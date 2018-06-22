@@ -1,0 +1,26 @@
+Usage: hallmark [options] [path | glob ...]
+
+  Markdown Style Guide, with linter and automatic fixer.
+
+Options:
+
+      --fix                 fix problems (modifies files in place)
+  -h  --help                output usage information
+  -v  --version             output version number
+      --report <reporter>   specify reporter
+      --[no-]color          force color in report (detected by default)
+
+Examples:
+
+  # Lint *.md files
+  $ hallmark
+
+  # Lint and fix
+  $ hallmark --fix
+
+  # Lint and fix custom files
+  $ hallmark --fix CHANGELOG.md docs/*.md
+
+  # Use a custom reporter
+  $ hallmark --report json
+  $ hallmark --report [ json --pretty ]
