@@ -7,7 +7,9 @@ module.exports = function (fix) {
       require('remark-lint-no-undefined-references'),
       require('remark-lint-no-unused-definitions'),
       require('remark-lint-no-duplicate-definitions'),
-      require('remark-lint-no-inline-padding')
+      require('remark-lint-no-inline-padding'),
+      [require('remark-lint-blockquote-indentation'), 2], // Means 1 space.
+      require('remark-lint-checkbox-content-indent')
 
       // Disabled for now because of frequent false positives
       // require('remark-lint-no-dead-urls'),
@@ -30,7 +32,11 @@ module.exports = function (fix) {
       require('remark-lint-hard-break-spaces'),
       [require('remark-lint-code-block-style'), 'fenced'],
       [require('remark-lint-table-cell-padding'), 'padded'],
-      require('remark-lint-table-pipes')
+      require('remark-lint-table-pipes'),
+      [require('remark-lint-checkbox-character-style'), {
+        checked: 'x', unchecked: ' '
+      }],
+      require('remark-lint-definition-case')
     )
   }
 
