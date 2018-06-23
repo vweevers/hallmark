@@ -79,12 +79,21 @@ Running `hallmark` will then render contributors from `git` history to a markdow
 
 ## Rules
 
-- Fenced code blocks
-- No extra list indentation
-- No duplicate definitions
-- No table padding
-- No undefined references
-- No unused definitions
+- [Fenced code blocks](https://www.npmjs.com/package/remark-lint-code-block-style)
+- [End file with newline](https://www.npmjs.com/package/remark-lint-final-newline)
+- [Indent list items with a single space (`-  item`)](https://www.npmjs.com/package/remark-lint-list-item-indent)
+- [No indentation before list item bullets](https://www.npmjs.com/package/remark-lint-list-item-bullet-indent)
+- [No angle-bracketed links (`<url>`) without protocol](https://www.npmjs.com/package/remark-lint-no-auto-link-without-protocol)
+- [No literal URLs without angle-brackets](https://www.npmjs.com/package/remark-lint-no-literal-urls)
+- [No blank lines without markers (`>`) in a blockquote](https://www.npmjs.com/package/remark-lint-no-blockquote-without-marker)
+- [No more than two spaces to create a hard break](https://www.npmjs.com/package/remark-lint-hard-break-spaces)
+- [No unneeded padding around heading content](https://www.npmjs.com/package/remark-lint-no-heading-content-indent)
+- [No inline padding between markers and content (`_ content _`)](https://www.npmjs.com/package/remark-lint-no-inline-padding)
+- [No duplicate definitions](https://www.npmjs.com/package/remark-lint-no-duplicate-definitions)
+- [No references to undefined definitions](https://www.npmjs.com/package/remark-lint-no-undefined-references)
+- [No unused definitions](https://www.npmjs.com/package/remark-lint-no-unused-definitions)
+- [Table cells must be padded](https://www.npmjs.com/package/remark-lint-table-cell-padding) ([#16](https://github.com/vweevers/hallmark/issues/16))
+- [Table rows must be fenced with pipes](https://www.npmjs.com/package/remark-lint-table-pipes)
 
 ## Reporters
 

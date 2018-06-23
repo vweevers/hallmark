@@ -28,33 +28,21 @@ module.exports = function (argv, packageOpts, files, cwd) {
     reporter,
     reporterOptions,
     plugins: [
-      ['git-contributors', packageOpts.community || null],
-      ['github'],
-      ['toc', {
+      [require('remark-git-contributors'), packageOpts.community || null],
+      [require('remark-github')],
+      [require('remark-toc'), {
         maxDepth: 2,
         tight: true
       }],
-      ['collapse', {
+      [require('remark-collapse'), {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      ['validate-links'],
-
-      // Disabled for now because of frequent false positives
-      // ['lint-no-dead-urls'],
-
-      ['lint-hard-break-spaces'],
-      ['lint-no-duplicate-definitions'],
-      ['lint-no-inline-padding'],
-      ['lint-no-undefined-references'],
-      ['lint-no-unused-definitions']
+      require('./lint')(argv.fix)
     ],
     settings: {
       // One style for code blocks, whether they have a language or not.
       fences: true,
-
-      // Less diff noise
-      paddedTable: false,
       listItemIndent: '1'
     },
     pluginPrefix: 'remark',
