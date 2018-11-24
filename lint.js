@@ -1,4 +1,4 @@
-module.exports = function (fix) {
+module.exports = function (fix, validateLinks) {
   const preset = {
     plugins: [
       require('remark-lint'),
@@ -40,9 +40,14 @@ module.exports = function (fix) {
     )
   }
 
-  preset.plugins.push(
-    require('remark-validate-links')
-  )
+  // Temporarily allow skipping link validation, because remark does not parse
+  // HTML anchors - as used in various Level readme's. Those readme's should be
+  // updated to use markdown only.
+  if (validateLinks) {
+    preset.plugins.push(
+      require('remark-validate-links')
+    )
+  }
 
   return preset
 }

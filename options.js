@@ -38,7 +38,7 @@ module.exports = function (argv, packageOpts, files, cwd) {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      require('./lint')(argv.fix)
+      require('./lint')(argv.fix, packageOpts.validateLinks !== false)
     ],
     settings: {
       // One style for code blocks, whether they have a language or not.
