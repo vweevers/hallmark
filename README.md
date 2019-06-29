@@ -6,7 +6,7 @@
 [![npm status](http://img.shields.io/npm/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
 [![node](https://img.shields.io/node/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
 [![Travis build status](https://img.shields.io/travis/vweevers/hallmark.svg?label=travis)](http://travis-ci.org/vweevers/hallmark)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Greenkeeper badge](https://badges.greenkeeper.io/vweevers/hallmark.svg)](https://greenkeeper.io/)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![Markdown Style Guide](https://img.shields.io/badge/md_style-hallmark-brightgreen.svg)
 
 ## Table of Contents
