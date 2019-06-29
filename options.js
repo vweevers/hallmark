@@ -28,7 +28,7 @@ module.exports = function (argv, packageOpts, files, cwd) {
     reporter,
     reporterOptions,
     plugins: [
-      [require('remark-git-contributors'), packageOpts.community || null],
+      [require('remark-git-contributors'), { contributors: packageOpts.community || packageOpts.contributors || null }],
       [require('remark-github')],
       [require('remark-toc'), {
         maxDepth: 2,

@@ -68,7 +68,25 @@ Or this heading to a `README.md`:
 ## Contributors
 ```
 
-Running `hallmark --fix` will then render contributors from `git` history to a markdown table.
+Running `hallmark --fix` will then render contributors from `git` history to a markdown table. To add links to GitHub and social profiles of contributors, add `hallmark.contributors` (aliased as `hallmark.community`) to your `package.json`:
+
+```json
+"hallmark": {
+  "contributors": [{
+    "name": "Sara",
+    "email": "sara@example.com",
+    "github": "sara",
+    "twitter": "sara"
+  }]
+}
+```
+
+Where `contributors` is either:
+
+- An array in the form of `[{ email, name, … }, … ]`;
+- A module id or path to a file that exports `contributors` or `{ contributors }`.
+
+Alternatively, put the metadata in the [`author` or `contributors` fields](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in `package.json`. For details, please see [`remark-git-contributors`](https://github.com/remarkjs/remark-git-contributors#metadata).
 
 ## Rules
 
