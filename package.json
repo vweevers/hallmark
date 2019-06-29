@@ -41,7 +41,7 @@
     "remark-toc": "~5.1.1",
     "remark-validate-links": "~8.0.2",
     "subarg": "~1.0.0",
-    "supports-color": "~7.0.0",
+    "supports-color": "~6.1.0",
     "unified-engine": "~7.0.0"
   },
   "devDependencies": {
@@ -54,6 +54,11 @@
     "url": "https://github.com/vweevers/hallmark.git"
   },
   "homepage": "https://github.com/vweevers/hallmark",
+  "greenkeeper": {
+    "ignore": [
+      "supports-color"
+    ]
+  },
   "keywords": [
     "markdown",
     "documentation",
@@ -70,6 +75,6 @@
     "unified"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=6"
   }
 }
