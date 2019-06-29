@@ -42,6 +42,11 @@ Lint and fix custom files:
 hallmark --fix CHANGELOG.md docs/*.md
 ```
 
+## Requirements
+
+- A `package.json` must exist, with a [`repository`](https://docs.npmjs.com/files/package.json#repository) property
+- The working directory must be a git repository.
+
 ## Opt-in Features
 
 ### Table of Contents
