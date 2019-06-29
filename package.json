@@ -15,7 +15,7 @@
     "pkg-config": "~1.1.1",
     "remark": "~10.0.1",
     "remark-collapse": "~0.1.2",
-    "remark-git-contributors": "~1.0.0",
+    "remark-git-contributors": "~1.1.0",
     "remark-github": "~7.0.3",
     "remark-lint": "~6.0.2",
     "remark-lint-blockquote-indentation": "~1.0.2",
@@ -41,8 +41,8 @@
     "remark-toc": "~5.1.1",
     "remark-validate-links": "~8.0.2",
     "subarg": "~1.0.0",
-    "supports-color": "~6.1.0",
-    "unified-engine": "~6.0.1"
+    "supports-color": "~7.0.0",
+    "unified-engine": "~7.0.0"
   },
   "devDependencies": {
     "standard": "^12.0.1",
@@ -70,6 +70,6 @@
     "unified"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   }
 }
