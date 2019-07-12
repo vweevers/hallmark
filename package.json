@@ -45,7 +45,7 @@
     "unified-engine": "~7.0.0"
   },
   "devDependencies": {
-    "standard": "^12.0.1",
+    "standard": "^13.0.1",
     "tape": "^4.10.2",
     "vfile-reporter-json": "^2.0.0"
   },
