@@ -13,7 +13,7 @@
     "deglob": "~4.0.0",
     "markdown-extensions": "~1.1.1",
     "pkg-config": "~1.1.1",
-    "remark": "~10.0.1",
+    "remark": "~11.0.0",
     "remark-collapse": "~0.1.2",
     "remark-git-contributors": "~2.0.0",
     "remark-github": "~8.0.0",
