@@ -26,7 +26,7 @@ const dependents = [
 
 for (const repo of dependents) {
   const cwd = path.join(__dirname, 'dependents', repo.toLowerCase())
-  const url = `git@github.com:${repo}`
+  const url = `https://github.com/${repo}.git`
 
   test(`smoke test ${repo}`, function (t) {
     t.plan(2)
