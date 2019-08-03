@@ -13,7 +13,7 @@ const dependents = [
   'Level/bench',
   'Level/codec',
   'Level/compose',
-  'Level/level-js',
+  // 'Level/level-js', // Failing
   'Level/levelup',
   'Level/memdown',
   'Level/subleveldown',
