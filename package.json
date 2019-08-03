@@ -6,7 +6,7 @@
   "license": "GPL-3.0",
   "bin": "cli.js",
   "scripts": {
-    "test": "standard && node cli.js",
+    "test": "standard && node cli.js && node test.js",
     "hallmark": "node cli.js --fix"
   },
   "dependencies": {
@@ -45,6 +45,8 @@
     "unified-engine": "~7.0.0"
   },
   "devDependencies": {
+    "git-pull-or-clone": "github:vweevers/git-pull-or-clone#add-depth-option",
+    "level-community": "^3.0.0",
     "standard": "^13.0.1",
     "tape": "^4.10.2",
     "vfile-reporter-json": "^2.0.0"
