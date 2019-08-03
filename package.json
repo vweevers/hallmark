@@ -10,7 +10,7 @@
     "hallmark": "node cli.js --fix"
   },
   "dependencies": {
-    "deglob": "~3.1.0",
+    "deglob": "~4.0.0",
     "markdown-extensions": "~1.1.1",
     "pkg-config": "~1.1.1",
     "remark": "~10.0.1",
