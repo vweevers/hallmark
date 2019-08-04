@@ -32,7 +32,7 @@ for (const repo of dependents) {
     t.plan(2)
 
     // Clone fully because we need git history for remark-git-contributors
-    gitPullOrClone(url, cwd, { depth: -1 }, (err) => {
+    gitPullOrClone(url, cwd, { depth: Infinity }, (err) => {
       t.ifError(err, 'no git error')
 
       // Pipe stdout to stderr because our stdout is for TAP

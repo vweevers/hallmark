@@ -45,7 +45,7 @@
     "unified-engine": "~7.0.0"
   },
   "devDependencies": {
-    "git-pull-or-clone": "github:vweevers/git-pull-or-clone#add-depth-option",
+    "git-pull-or-clone": "^1.3.0",
     "level-community": "^3.0.0",
     "standard": "^13.0.1",
     "tape": "^4.10.2",
