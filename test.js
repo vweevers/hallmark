@@ -3,6 +3,7 @@
 const test = require('tape')
 const path = require('path')
 const gitPullOrClone = require('git-pull-or-clone')
+const rimraf = require('rimraf')
 const cp = require('child_process')
 
 const dependents = [
@@ -29,7 +30,7 @@ for (const repo of dependents) {
   const url = `https://github.com/${repo}.git`
 
   test(`smoke test ${repo}`, function (t) {
-    t.plan(2)
+    t.plan(5)
 
     // Clone fully because we need git history for remark-git-contributors
     gitPullOrClone(url, cwd, { depth: Infinity }, (err) => {
@@ -40,7 +41,26 @@ for (const repo of dependents) {
       const cli = path.join(__dirname, 'cli.js')
 
       cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
-        t.is(code, 0, 'hallmark exited with code 0')
+        t.is(code, 0, 'hallmark linter exited with code 0')
+
+        // Skip CONTRIBUTORS.md for now (many dependents need updating)
+        const args = ['--fix', '-i', 'CONTRIBUTORS.md']
+
+        cp.fork(cli, args, { cwd, stdio }).on('exit', function (code) {
+          t.is(code, 0, 'hallmark fixer exited with code 0')
+
+          cp.execFile('git', ['diff'], { cwd }, function (err, stdout) {
+            const diff = (stdout || '').trim()
+
+            t.ifError(err, 'no git error')
+            t.is(diff, '', 'no diff')
+
+            if (diff !== '') {
+              // Start fresh on the next test run
+              rimraf.sync(cwd, { glob: false })
+            }
+          })
+        })
       })
     })
   })
