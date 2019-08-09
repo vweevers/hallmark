@@ -14,6 +14,7 @@
 <details><summary>Click to expand</summary>
 
 - [Usage](#usage)
+- [Requirements](#requirements)
 - [Opt-in Features](#opt-in-features)
 - [Rules](#rules)
 - [Reporters](#reporters)
