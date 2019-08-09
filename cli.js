@@ -27,22 +27,35 @@ if (argv.help) {
 } else {
   const deglob = require('deglob')
   const engine = require('unified-engine')
-  const pkgConfig = require('pkg-config')
   const options = require('./options')
 
   const cwd = process.cwd()
   const glob = argv._.length ? argv._ : ['*.md']
-  const configKey = 'hallmark'
-  const packageOpts = pkgConfig(configKey, { root: false, cwd }) || {}
-  const ignore = [].concat(argv.ignore || [])
+  const pkg = getNearestPackage(cwd) || {}
+  const packageOpts = pkg.hallmark || {}
+  const repo = pkg.repository ? pkg.repository.url || pkg.repository : ''
+  const ignore = [].concat(packageOpts.ignore || []).concat(argv.ignore || [])
 
-  deglob(glob, { configKey, cwd, ignore }, function (err, files) {
+  deglob(glob, { usePackageJson: false, cwd, ignore }, function (err, files) {
     if (err) throw err
     if (files.length === 0) process.exit()
 
-    engine(options(argv, packageOpts, files, cwd), function (err, code) {
+    engine(options(argv, packageOpts, files, cwd, repo), function (err, code) {
       if (err) throw err
       process.exit(code)
     })
   })
+}
+
+function getNearestPackage (cwd) {
+  const findRoot = require('find-root')
+  const fs = require('fs')
+  const path = require('path')
+
+  try {
+    const fp = path.join(findRoot(cwd), 'package.json')
+    return JSON.parse(fs.readFileSync(fp, 'utf8'))
+  } catch (err) {
+
+  }
 }

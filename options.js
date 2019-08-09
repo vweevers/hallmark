@@ -4,7 +4,7 @@ const color = require('supports-color').stdout
 const extensions = require('markdown-extensions')
 const processor = require('remark')
 
-module.exports = function (argv, packageOpts, files, cwd) {
+module.exports = function (argv, packageOpts, files, cwd, repo) {
   let reporter
   let reporterOptions
 
@@ -38,7 +38,7 @@ module.exports = function (argv, packageOpts, files, cwd) {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      require('./lint')(argv.fix, packageOpts.validateLinks !== false)
+      require('./lint')(argv.fix, packageOpts.validateLinks !== false, repo)
     ],
     settings: {
       // One style for code blocks, whether they have a language or not.
