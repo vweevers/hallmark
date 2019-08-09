@@ -11,7 +11,8 @@ const argv = require('subarg')(process.argv.slice(2), {
   },
   alias: {
     h: 'help',
-    v: 'version'
+    v: 'version',
+    i: 'ignore'
   }
 })
 
@@ -33,8 +34,9 @@ if (argv.help) {
   const glob = argv._.length ? argv._ : ['*.md']
   const configKey = 'hallmark'
   const packageOpts = pkgConfig(configKey, { root: false, cwd }) || {}
+  const ignore = [].concat(argv.ignore || [])
 
-  deglob(glob, { configKey, cwd }, function (err, files) {
+  deglob(glob, { configKey, cwd, ignore }, function (err, files) {
     if (err) throw err
     if (files.length === 0) process.exit()
 
