@@ -1,4 +1,4 @@
-module.exports = function (fix, validateLinks) {
+module.exports = function (fix, validateLinks, repo) {
   const preset = {
     plugins: [
       require('remark-lint'),
@@ -44,9 +44,11 @@ module.exports = function (fix, validateLinks) {
   // HTML anchors - as used in various Level readme's. Those readme's should be
   // updated to use markdown only.
   if (validateLinks) {
-    preset.plugins.push(
-      require('remark-validate-links')
-    )
+    preset.plugins.push([require('remark-validate-links'), {
+      // If we don't pass this, remark-validate-links tries to get the repo url
+      // from `git remote -v` which is not desirable for forks.
+      repository: repo || false
+    }])
   }
 
   return preset
