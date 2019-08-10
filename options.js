@@ -19,6 +19,9 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     }
   }
 
+  const fix = argv.fix
+  const contributors = packageOpts.community || packageOpts.contributors || null
+
   return {
     processor,
     extensions,
@@ -28,7 +31,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     reporter,
     reporterOptions,
     plugins: [
-      [require('remark-git-contributors'), { contributors: packageOpts.community || packageOpts.contributors || null }],
+      [require('remark-git-contributors'), { contributors }],
       [require('remark-github')],
       [require('remark-toc'), {
         maxDepth: 2,
@@ -38,7 +41,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      require('./lint')(argv.fix, packageOpts.validateLinks !== false, repo)
+      require('./lint')(fix, packageOpts.validateLinks !== false, repo)
     ],
     settings: {
       // One style for code blocks, whether they have a language or not.
@@ -47,7 +50,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     },
     pluginPrefix: 'remark',
     // "Whether to write successfully processed files"
-    output: argv.fix,
+    output: fix,
     // "Whether to write the processed file to streamOut"
     out: false,
     // "Call back with an unsuccessful (1) code on warnings as well as errors"
