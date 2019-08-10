@@ -46,9 +46,13 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
       listItemIndent: '1'
     },
     pluginPrefix: 'remark',
+    // "Whether to write successfully processed files"
     output: argv.fix,
+    // "Whether to write the processed file to streamOut"
     out: false,
+    // "Call back with an unsuccessful (1) code on warnings as well as errors"
     frail: true,
+    // "Do not report successful files"
     quiet: true
   }
 }
