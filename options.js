@@ -32,7 +32,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     reporterOptions,
     plugins: [
       [require('remark-git-contributors'), { contributors }],
-      [require('remark-github')],
+      [require('remark-github'), { repository: repo }],
       [require('remark-toc'), {
         maxDepth: 2,
         tight: true
