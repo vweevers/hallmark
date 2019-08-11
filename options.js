@@ -31,7 +31,8 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     reporter,
     reporterOptions,
     plugins: [
-      [require('remark-git-contributors'), { contributors }],
+      // Skip updating contributors table in lint mode
+      fix ? [require('remark-git-contributors'), { contributors }] : null,
       [require('remark-github'), { repository: repo }],
       [require('remark-toc'), {
         maxDepth: 2,
@@ -42,7 +43,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
         summary: 'Click to expand'
       }],
       require('./lint')(fix, packageOpts.validateLinks !== false, repo)
-    ],
+    ].filter(Boolean),
     settings: {
       // One style for code blocks, whether they have a language or not.
       fences: true,
