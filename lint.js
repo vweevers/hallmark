@@ -11,9 +11,6 @@ module.exports = function (fix, validateLinks, repo) {
       [require('remark-lint-blockquote-indentation'), 2], // Means 1 space.
       require('remark-lint-checkbox-content-indent')
 
-      // Disabled for now because of frequent false positives
-      // require('remark-lint-no-dead-urls'),
-
       // TBD
       // require('remark-lint-no-shortcut-reference-image'),
       // require('remark-lint-no-shortcut-reference-link')

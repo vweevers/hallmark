@@ -102,7 +102,6 @@ Alternatively, put the metadata in the [`author` or `contributors` fields](https
 - [End file with newline](https://www.npmjs.com/package/remark-lint-final-newline)
 - No dead links, references and definitions:
   - [No dead internal links](https://www.npmjs.com/package/remark-validate-links)
-  - ~~[No dead external links](https://www.npmjs.com/package/remark-lint-no-dead-urls)~~ ([#17](https://github.com/vweevers/hallmark/issues/17))
   - [No references to undefined definitions](https://www.npmjs.com/package/remark-lint-no-undefined-references)
   - [No unused definitions](https://www.npmjs.com/package/remark-lint-no-unused-definitions)
   - [No duplicate definitions](https://www.npmjs.com/package/remark-lint-no-duplicate-definitions)
