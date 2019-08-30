@@ -49,13 +49,15 @@ for (const repo of dependents) {
         cp.fork(cli, args, { cwd, stdio }).on('exit', function (code) {
           t.is(code, 0, 'hallmark fixer exited with code 0')
 
-          cp.execFile('git', ['diff'], { cwd }, function (err, stdout) {
+          cp.execFile('git', ['diff', '--color'], { cwd }, function (err, stdout) {
             const diff = (stdout || '').trim()
 
             t.ifError(err, 'no git error')
-            t.is(diff, '', 'no diff')
+            t.ok(diff === '', 'no diff')
 
             if (diff !== '') {
+              console.error(diff)
+
               // Start fresh on the next test run
               rimraf.sync(cwd, { glob: false })
             }
