@@ -10,18 +10,18 @@ const dependents = [
   'airtap/airtap',
   // 'deltachat/deltachat-desktop', // Failing
   'deltachat/deltachat-node',
-  'Level/abstract-leveldown',
+  // 'Level/abstract-leveldown', // TODO: update links
   'Level/bench',
   'Level/codec',
   'Level/compose',
   // 'Level/level-js', // Failing
-  'Level/levelup',
-  'Level/memdown',
+  // 'Level/levelup', // TODO: update and reorder links
+  // 'Level/memdown', // TODO: update links
   'Level/subleveldown',
   'vweevers/detect-tabular',
   'vweevers/keyspace',
   'vweevers/node-docker-machine',
-  'vweevers/win-detect-browsers',
+  // 'vweevers/win-detect-browsers', // TODO: missing release
   'vweevers/zipfian-integer'
 ]
 
