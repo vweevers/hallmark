@@ -1,4 +1,4 @@
-module.exports = function (fix, cwd, validateLinks, repository) {
+module.exports = function (fix, cwd, packageOpts, repository) {
   const preset = {
     plugins: [
       require('remark-lint'),
@@ -30,7 +30,10 @@ module.exports = function (fix, cwd, validateLinks, repository) {
       require('remark-lint-no-heading-content-indent'),
       require('remark-lint-hard-break-spaces'),
       [require('remark-lint-code-block-style'), 'fenced'],
-      [require('remark-lint-table-cell-padding'), 'padded'],
+
+      // TODO: support fixed-width columns (https://github.com/remarkjs/remark-lint/issues/217)
+      packageOpts.paddedTable ? [require('remark-lint-table-cell-padding'), 'padded'] : null,
+
       require('remark-lint-table-pipes'),
       [require('remark-lint-checkbox-character-style'), {
         checked: 'x', unchecked: ' '
@@ -42,7 +45,7 @@ module.exports = function (fix, cwd, validateLinks, repository) {
   // Temporarily allow skipping link validation, because remark does not parse
   // HTML anchors - as used in various Level readme's. Those readme's should be
   // updated to use markdown only.
-  if (validateLinks) {
+  if (packageOpts.validateLinks) {
     preset.plugins.push([require('remark-validate-links'), {
       // If we don't pass this, remark-validate-links tries to get the repo url
       // from `git remote -v` which is not desirable for forks.
@@ -50,5 +53,6 @@ module.exports = function (fix, cwd, validateLinks, repository) {
     }])
   }
 
+  preset.plugins = preset.plugins.filter(Boolean)
   return preset
 }

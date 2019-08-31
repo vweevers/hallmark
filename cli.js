@@ -32,9 +32,12 @@ if (argv.help) {
   const cwd = process.cwd()
   const glob = argv._.length ? argv._ : ['*.md']
   const pkg = getNearestPackage(cwd) || {}
-  const packageOpts = pkg.hallmark || {}
+  const packageOpts = Object.assign({}, pkg.hallmark)
   const repo = pkg.repository ? pkg.repository.url || pkg.repository : ''
   const ignore = [].concat(packageOpts.ignore || []).concat(argv.ignore || [])
+
+  packageOpts.validateLinks = packageOpts.validateLinks !== false
+  packageOpts.paddedTable = packageOpts.paddedTable !== false
 
   deglob(glob, { usePackageJson: false, cwd, ignore }, function (err, files) {
     if (err) throw err

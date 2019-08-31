@@ -42,12 +42,18 @@ module.exports = function (argv, packageOpts, files, cwd, repository) {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      require('./lint')(fix, cwd, packageOpts.validateLinks !== false, repository)
+      require('./lint')(fix, cwd, packageOpts, repository)
     ].filter(Boolean),
     settings: {
       // One style for code blocks, whether they have a language or not.
       fences: true,
-      listItemIndent: '1'
+      listItemIndent: '1',
+
+      // Allow disabling padding because on big tables it creates noise.
+      paddedTable: packageOpts.paddedTable,
+
+      // In addition, use fixed width columns.
+      stringLength: packageOpts.paddedTable ? (s) => String(s).length : () => 3
     },
     pluginPrefix: 'remark',
     // "Whether to write successfully processed files"
