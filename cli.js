@@ -38,6 +38,7 @@ if (argv.help) {
 
   packageOpts.validateLinks = packageOpts.validateLinks !== false
   packageOpts.paddedTable = packageOpts.paddedTable !== false
+  packageOpts.toc = packageOpts.toc !== false
 
   deglob(glob, { usePackageJson: false, cwd, ignore }, function (err, files) {
     if (err) throw err
