@@ -4,7 +4,7 @@ const color = require('supports-color').stdout
 const extensions = require('markdown-extensions')
 const processor = require('remark')
 
-module.exports = function (argv, packageOpts, files, cwd, repo) {
+module.exports = function (argv, packageOpts, files, cwd, repository) {
   let reporter
   let reporterOptions
 
@@ -33,7 +33,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
     plugins: [
       // Skip updating contributors table in lint mode
       fix ? [require('remark-git-contributors'), { contributors }] : null,
-      [require('remark-github'), { repository: repo }],
+      [require('remark-github'), { repository }],
       [require('remark-toc'), {
         maxDepth: 2,
         tight: true
@@ -42,7 +42,7 @@ module.exports = function (argv, packageOpts, files, cwd, repo) {
         test: /^table of contents$/i,
         summary: 'Click to expand'
       }],
-      require('./lint')(fix, packageOpts.validateLinks !== false, repo)
+      require('./lint')(fix, cwd, packageOpts.validateLinks !== false, repository)
     ].filter(Boolean),
     settings: {
       // One style for code blocks, whether they have a language or not.

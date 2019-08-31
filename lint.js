@@ -1,7 +1,9 @@
-module.exports = function (fix, validateLinks, repo) {
+module.exports = function (fix, cwd, validateLinks, repository) {
   const preset = {
     plugins: [
       require('remark-lint'),
+
+      [require('remark-changelog'), { cwd, fix, repository }],
 
       // These are not automatically fixed by remark-stringify
       require('remark-lint-no-undefined-references'),
@@ -44,7 +46,7 @@ module.exports = function (fix, validateLinks, repo) {
     preset.plugins.push([require('remark-validate-links'), {
       // If we don't pass this, remark-validate-links tries to get the repo url
       // from `git remote -v` which is not desirable for forks.
-      repository: repo || false
+      repository: repository || false
     }])
   }
 
