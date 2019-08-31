@@ -32,8 +32,7 @@ for (const repo of dependents) {
   test(`smoke test ${repo}`, function (t) {
     t.plan(5)
 
-    // Clone fully because we need git history for remark-git-contributors
-    gitPullOrClone(url, cwd, { depth: Infinity }, (err) => {
+    pull(url, cwd, (err) => {
       t.ifError(err, 'no git error')
 
       // Pipe stdout to stderr because our stdout is for TAP
@@ -65,5 +64,13 @@ for (const repo of dependents) {
         })
       })
     })
+  })
+}
+
+function pull (url, cwd, callback) {
+  // Clone fully because we need git history for remark-git-contributors
+  gitPullOrClone(url, cwd, { depth: Infinity }, function (err) {
+    if (err) return callback(err)
+    cp.execFile('git', ['fetch', '--tags'], { cwd }, callback)
   })
 }
