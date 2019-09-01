@@ -20,7 +20,9 @@ module.exports = function (argv, packageOpts, files, cwd, repository) {
   }
 
   const fix = argv.fix
-  const contributors = packageOpts.community || packageOpts.contributors || null
+  const contributors = 'contributors' in packageOpts
+    ? packageOpts.contributors
+    : packageOpts.community
 
   return {
     processor,
@@ -32,7 +34,10 @@ module.exports = function (argv, packageOpts, files, cwd, repository) {
     reporterOptions,
     plugins: [
       // Skip updating contributors table in lint mode
-      fix ? [require('remark-git-contributors'), { contributors }] : null,
+      fix && contributors !== false ? [require('remark-git-contributors'), {
+        contributors: contributors || null
+      }] : null,
+
       [require('remark-github'), { repository }],
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
