@@ -1,14 +1,15 @@
-Usage: hallmark [options] [path | glob ...]
+Usage: hallmark [options] [pattern ...]
 
   Markdown Style Guide, with linter and automatic fixer.
 
 Options:
 
-      --fix                 fix problems (modifies files in place)
-  -h  --help                output usage information
-  -v  --version             output version number
-      --report <reporter>   specify reporter
-      --[no-]color          force color in report (detected by default)
+      --fix                 Fix issues. Modifies files in place.
+  -i  --ignore <pattern>    Files to ignore. Repeat to specify multiple patterns
+  -h  --help                Print usage and exit
+  -v  --version             Print version and exit
+      --report <reporter>   Specify reporter
+      --[no-]color          Force color in report (detected by default)
 
 Examples:
 
