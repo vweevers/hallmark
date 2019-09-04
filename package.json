@@ -15,7 +15,7 @@
     "find-root": "~1.1.0",
     "markdown-extensions": "~1.1.1",
     "remark": "~11.0.0",
-    "remark-changelog": "~0.0.2",
+    "remark-changelog": "~0.1.1",
     "remark-collapse": "~0.1.2",
     "remark-git-contributors": "~2.0.0",
     "remark-github": "~8.0.0",
