@@ -3,8 +3,6 @@ module.exports = function (fix, cwd, packageOpts, repository) {
     plugins: [
       require('remark-lint'),
 
-      [require('remark-changelog'), { cwd, fix, repository }],
-
       // These are not automatically fixed by remark-stringify
       require('remark-lint-no-undefined-references'),
       require('remark-lint-no-unused-definitions'),
