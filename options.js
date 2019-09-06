@@ -38,6 +38,7 @@ module.exports = function (argv, packageOpts, files, cwd, repository) {
         contributors: contributors || null
       }] : null,
 
+      [require('remark-changelog'), { cwd, fix, repository }],
       [require('remark-github'), { repository }],
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
