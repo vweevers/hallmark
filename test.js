@@ -7,18 +7,17 @@ const rimraf = require('rimraf')
 const cp = require('child_process')
 
 const dependents = [
-  // TODO: remove empty Unreleased section from these
-  // 'airtap/airtap',
-  // // 'deltachat/deltachat-desktop', // Failing
-  // 'deltachat/deltachat-node',
-  // 'Level/abstract-leveldown',
-  // 'Level/bench',
-  // 'Level/codec',
-  // 'Level/compose',
-  // // 'Level/level-js', // Failing
-  // 'Level/levelup',
-  // 'Level/memdown',
-  // 'Level/subleveldown',
+  'airtap/airtap',
+  // 'deltachat/deltachat-desktop', // Failing
+  // 'deltachat/deltachat-node', // Has empty releases
+  'Level/abstract-leveldown',
+  'Level/bench',
+  'Level/codec',
+  'Level/compose',
+  'Level/level-js',
+  'Level/levelup',
+  'Level/memdown',
+  'Level/subleveldown',
   'vweevers/detect-tabular',
   'vweevers/keyspace',
   'vweevers/node-docker-machine',
