@@ -49,7 +49,7 @@ if (argv.help) {
     if (err) throw err
     if (files.length === 0) process.exit()
 
-    engine(options(argv, packageOpts, files, cwd, repo), function (err, code) {
+    engine(options(argv, pkg, packageOpts, files, cwd, repo), function (err, code) {
       if (err) throw err
       process.exit(code)
     })

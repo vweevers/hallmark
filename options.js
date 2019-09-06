@@ -4,7 +4,7 @@ const color = require('supports-color').stdout
 const extensions = require('markdown-extensions')
 const processor = require('remark')
 
-module.exports = function (argv, packageOpts, files, cwd, repository) {
+module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
   let reporter
   let reporterOptions
 
@@ -38,7 +38,7 @@ module.exports = function (argv, packageOpts, files, cwd, repository) {
         contributors: contributors || null
       }] : null,
 
-      [require('remark-changelog'), { cwd, fix, repository }],
+      [require('remark-changelog'), { cwd, fix, repository, version: pkg.version }],
       [require('remark-github'), { repository }],
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
