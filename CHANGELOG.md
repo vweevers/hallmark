@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.0.0] - 2019-09-06
+
+### Changed
+
+- Skip running on node &lt; 8 ([`e804671`](https://github.com/vweevers/hallmark/commit/e804671))
+- Upgrade `standard` devDependency from `^13.0.1` to `^14.0.0` ([#35](https://github.com/vweevers/hallmark/issues/35))
+- Upgrade `rimraf` devDependency from `^2.6.3` to `^3.0.0` ([#34](https://github.com/vweevers/hallmark/issues/34))
+
+### Added
+
+- **Breaking:** add `remark-changelog` ([#37](https://github.com/vweevers/hallmark/issues/37), [#44](https://github.com/vweevers/hallmark/issues/44), [`6a793f6`](https://github.com/vweevers/hallmark/commit/6a793f6), [`057fddb`](https://github.com/vweevers/hallmark/commit/057fddb))
+- Allow disabling automatic table of contents ([`cee5001`](https://github.com/vweevers/hallmark/commit/cee5001))
+- Allow disabling table padding ([`3210a96`](https://github.com/vweevers/hallmark/commit/3210a96))
+- Add node 12 to CI ([`b31750e`](https://github.com/vweevers/hallmark/commit/b31750e))
+
 ## [1.2.0] - 2019-08-11
 
 ### Changed
@@ -69,6 +84,8 @@
 ## 0.0.1 - 2018-06-23
 
 :seedling: Initial release.
+
+[2.0.0]: https://github.com/vweevers/hallmark/compare/v1.2.0...v2.0.0
 
 [1.2.0]: https://github.com/vweevers/hallmark/compare/v1.1.1...v1.2.0
 
