@@ -39,7 +39,7 @@
     "remark-lint-no-unused-definitions": "~1.0.2",
     "remark-lint-table-cell-padding": "~1.0.2",
     "remark-lint-table-pipes": "~1.0.2",
-    "remark-toc": "~6.0.0",
+    "remark-toc": "~7.0.0",
     "remark-validate-links": "~9.0.1",
     "subarg": "~1.0.0",
     "supports-color": "~6.1.0",
