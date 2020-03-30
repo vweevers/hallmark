@@ -24,7 +24,7 @@
     "remark-lint-checkbox-character-style": "~1.0.2",
     "remark-lint-checkbox-content-indent": "~1.0.2",
     "remark-lint-code-block-style": "~1.0.2",
-    "remark-lint-definition-case": "~1.0.2",
+    "remark-lint-definition-case": "~2.0.0",
     "remark-lint-final-newline": "~1.0.2",
     "remark-lint-hard-break-spaces": "~1.0.3",
     "remark-lint-list-item-bullet-indent": "~1.0.2",
