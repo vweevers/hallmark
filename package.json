@@ -37,7 +37,7 @@
     "remark-lint-no-literal-urls": "~1.0.2",
     "remark-lint-no-undefined-references": "~1.1.0",
     "remark-lint-no-unused-definitions": "~1.0.2",
-    "remark-lint-table-cell-padding": "~1.0.2",
+    "remark-lint-table-cell-padding": "~2.0.0",
     "remark-lint-table-pipes": "~1.0.2",
     "remark-toc": "~6.0.0",
     "remark-validate-links": "~9.0.1",
