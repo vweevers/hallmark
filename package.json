@@ -14,7 +14,7 @@
     "deglob": "~4.0.0",
     "find-root": "~1.1.0",
     "markdown-extensions": "~1.1.1",
-    "remark": "~11.0.0",
+    "remark": "~12.0.0",
     "remark-changelog": "~0.1.2",
     "remark-collapse": "~0.1.2",
     "remark-git-contributors": "~2.0.0",
