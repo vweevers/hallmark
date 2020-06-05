@@ -165,6 +165,14 @@ Boolean. Set to `false` to skip generating (or replacing) a Table of Contents. A
 
 String or array. See [Contributors Table](#contributors-table) for details. Aliased as `community`. Set to `false` to disable this feature entirely.
 
+### `plugins`
+
+An array of extra plugins, to be applied in both lint and `--fix` mode.
+
+### `fixers`
+
+An array of extra plugins, to be applied in `--fix` mode.
+
 ## Opt-in Features
 
 ### Table of Contents

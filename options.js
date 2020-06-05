@@ -24,6 +24,9 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
     ? packageOpts.contributors
     : packageOpts.community
 
+  const plugins = { plugins: packageOpts.plugins || [] }
+  const fixers = { plugins: packageOpts.fixers || [] }
+
   return {
     processor,
     extensions,
@@ -51,7 +54,9 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
         summary: 'Click to expand'
       }] : null,
 
-      require('./lint')(fix, cwd, packageOpts, repository)
+      fix ? fixers : null,
+      require('./lint')(fix, cwd, packageOpts, repository),
+      plugins
     ].filter(Boolean),
     settings: {
       // One style for code blocks, whether they have a language or not.
