@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.0] - 2020-05-06
+
+### Added
+
+- Add options to specify extra plugins ([`e43475c`](https://github.com/vweevers/hallmark/commit/e43475c))
+
+### Fixed
+
+- Skip testing `airtap` ([#45](https://github.com/vweevers/hallmark/issues/45)) ([`f6c44f9`](https://github.com/vweevers/hallmark/commit/f6c44f9))
+
 ## [2.0.0] - 2019-09-06
 
 ### Changed
@@ -84,6 +94,8 @@
 ## 0.0.1 - 2018-06-23
 
 :seedling: Initial release.
+
+[2.1.0]: https://github.com/vweevers/hallmark/compare/v2.0.0...v2.1.0
 
 [2.0.0]: https://github.com/vweevers/hallmark/compare/v1.2.0...v2.0.0
 
