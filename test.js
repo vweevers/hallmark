@@ -7,7 +7,7 @@ const rimraf = require('rimraf')
 const cp = require('child_process')
 
 const dependents = [
-  'airtap/airtap',
+  // 'airtap/airtap', // See vweevers/hallmark#45
   // 'deltachat/deltachat-desktop', // Failing
   // 'deltachat/deltachat-node', // Has empty releases
   'Level/abstract-leveldown',
