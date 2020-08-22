@@ -26,6 +26,7 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
 
   const plugins = { plugins: packageOpts.plugins || [] }
   const fixers = { plugins: packageOpts.fixers || [] }
+  const changelogOptions = packageOpts.changelog || {}
 
   return {
     processor,
@@ -41,7 +42,7 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
         contributors: contributors || null
       }] : null,
 
-      [require('remark-changelog'), { cwd, fix, repository, version: pkg.version }],
+      [require('remark-changelog'), { cwd, fix, repository, version: pkg.version, ...changelogOptions }],
       [require('remark-github'), { repository }],
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
