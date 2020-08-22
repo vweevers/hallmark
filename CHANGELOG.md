@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0] - 2020-08-22
+
+### Changed
+
+- **Breaking:** drop node &lt; 10 and upgrade dependencies ([`02e7c00`](https://github.com/vweevers/hallmark/commit/02e7c00)). Now silently exits on node &lt; 10. Two dozen remark modules have been upgraded, many with breaking changes though most don't apply here. One thing I've noticed is that text like `module@1.0.0` will be converted to a `mailto` link. Wrap such text in backticks.
+- **Breaking:** remove depth limit on table of contents ([`031a6ae`](https://github.com/vweevers/hallmark/commit/031a6ae))
+- Bump `remark-changelog` ([`4868875`](https://github.com/vweevers/hallmark/commit/4868875)). Adds experimental git submodule support.
+
+### Added
+
+- Support passing options to `remark-changelog` ([`6a3923e`](https://github.com/vweevers/hallmark/commit/6a3923e)).
+
 ## [2.1.0] - 2020-05-06
 
 ### Added
@@ -94,6 +106,8 @@
 ## 0.0.1 - 2018-06-23
 
 :seedling: Initial release.
+
+[3.0.0]: https://github.com/vweevers/hallmark/compare/v2.1.0...v3.0.0
 
 [2.1.0]: https://github.com/vweevers/hallmark/compare/v2.0.0...v2.1.0
 
