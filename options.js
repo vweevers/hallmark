@@ -46,7 +46,6 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
       packageOpts.toc ? [require('remark-toc'), {
-        maxDepth: 2,
         tight: true
       }] : null,
       packageOpts.toc ? [require('remark-collapse'), {
