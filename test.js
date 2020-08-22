@@ -30,8 +30,6 @@ for (const repo of dependents) {
   const url = `https://github.com/${repo}.git`
 
   test(`smoke test ${repo}`, function (t) {
-    t.plan(5)
-
     pull(url, cwd, (err) => {
       t.ifError(err, 'no git error')
 
@@ -49,17 +47,28 @@ for (const repo of dependents) {
           t.is(code, 0, 'hallmark fixer exited with code 0')
 
           cp.execFile('git', ['diff', '--color'], { cwd }, function (err, stdout) {
+            t.ifError(err, 'no git error')
+
             const diff = (stdout || '').trim()
 
-            t.ifError(err, 'no git error')
-            t.ok(diff === '', 'no diff')
+            if (diff === '') {
+              t.end()
+              return
+            }
 
-            if (diff !== '') {
-              console.error(diff)
+            // Just print the diff for debugging; don't make assertions
+            console.error(diff)
+
+            // Check that fixed markdown is still valid
+            cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
+              t.is(code, 0, 'hallmark linter on fixed markdown exited with code 0')
 
               // Start fresh on the next test run
-              rimraf.sync(cwd, { glob: false })
-            }
+              rimraf(cwd, { glob: false }, function (err) {
+                if (err) throw err
+                t.end()
+              })
+            })
           })
         })
       })
