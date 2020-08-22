@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 
-if (process.version.match(/^v(\d+)\./)[1] < 8) {
-  console.error('hallmark: Node 8 or greater is required. `hallmark` did not run.')
+if (process.version.match(/^v(\d+)\./)[1] < 10) {
+  console.error('hallmark: Node 10 or greater is required. `hallmark` did not run.')
   process.exit(0)
 }
 

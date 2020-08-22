@@ -15,7 +15,10 @@ const dependents = [
   'Level/codec',
   'Level/compose',
   'Level/level-js',
-  'Level/levelup',
+
+  // TODO: Don't use literal URLs without angle brackets
+  // 'Level/levelup',
+
   'Level/memdown',
   'Level/subleveldown',
   'vweevers/detect-tabular',

@@ -64,7 +64,7 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
       listItemIndent: '1',
 
       // Allow disabling padding because on big tables it creates noise.
-      paddedTable: packageOpts.paddedTable,
+      tablePipeAlign: packageOpts.paddedTable,
 
       // In addition, use fixed width columns.
       stringLength: packageOpts.paddedTable ? (s) => String(s).length : () => 3
