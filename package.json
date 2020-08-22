@@ -59,11 +59,6 @@
     "url": "https://github.com/vweevers/hallmark.git"
   },
   "homepage": "https://github.com/vweevers/hallmark",
-  "greenkeeper": {
-    "ignore": [
-      "supports-color"
-    ]
-  },
   "keywords": [
     "markdown",
     "documentation",
