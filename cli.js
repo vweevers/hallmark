@@ -38,7 +38,7 @@ if (argv.help) {
   const glob = argv._.length ? argv._ : ['*.md']
   const pkg = getNearestPackage(cwd) || {}
   const packageOpts = Object.assign({}, pkg.hallmark)
-  const repo = pkg.repository ? pkg.repository.url || pkg.repository : ''
+  const repo = pkg.repository ? pkg.repository.url || pkg.repository : originRepo(cwd) || ''
   const ignore = [].concat(packageOpts.ignore || []).concat(argv.ignore || [])
 
   packageOpts.validateLinks = packageOpts.validateLinks !== false
@@ -67,4 +67,12 @@ function getNearestPackage (cwd) {
   } catch (err) {
 
   }
+}
+
+function originRepo (cwd) {
+  // Don't pass cwd for now (jonschlinkert/parse-git-config#13)
+  const origin = require('remote-origin-url').sync(/* cwd */)
+  const ghurl = require('github-url-from-git')
+
+  return origin ? ghurl(origin) : null
 }
