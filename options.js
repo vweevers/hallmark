@@ -38,21 +38,25 @@ module.exports = function (argv, pkg, packageOpts, files, cwd, repository) {
     reporterOptions,
     plugins: [
       // Skip updating contributors table in lint mode
-      fix && contributors !== false ? [require('remark-git-contributors'), {
-        contributors: contributors || null
-      }] : null,
+      fix && contributors !== false
+        ? [require('remark-git-contributors'), {
+            contributors: contributors || null
+          }]
+        : null,
 
       [require('remark-changelog'), { cwd, fix, repository, version: pkg.version, ...changelogOptions }],
       [require('remark-github'), { repository }],
 
       // TODO: https://github.com/vweevers/hallmark/issues/36
-      packageOpts.toc ? [require('remark-toc'), {
-        tight: true
-      }] : null,
-      packageOpts.toc ? [require('remark-collapse'), {
-        test: /^table of contents$/i,
-        summary: 'Click to expand'
-      }] : null,
+      packageOpts.toc
+        ? [require('remark-toc'), { tight: true }]
+        : null,
+      packageOpts.toc
+        ? [require('remark-collapse'), {
+            test: /^table of contents$/i,
+            summary: 'Click to expand'
+          }]
+        : null,
 
       fix ? fixers : null,
       require('./lint')(fix, cwd, packageOpts, repository),

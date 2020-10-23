@@ -52,7 +52,7 @@
     "level-community": "^3.0.0",
     "npm-consider": "^1.7.0",
     "rimraf": "^3.0.0",
-    "standard": "^14.0.0",
+    "standard": "^15.0.0",
     "tape": "^5.0.1",
     "vfile-reporter-json": "^2.0.0"
   },
