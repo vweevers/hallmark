@@ -5,18 +5,25 @@
   "author": "Vincent Weevers",
   "license": "GPL-3.0",
   "bin": "cli.js",
+  "main": "index.js",
   "scripts": {
-    "test": "standard && node cli.js && node test.js",
+    "test": "standard && depcheck --ignores level-community && node cli.js && node test.js",
     "hallmark": "node cli.js --fix",
     "check-licenses": "npm-consider install --test --production"
   },
+  "files": [
+    "CHANGELOG.md",
+    "cli.js",
+    "index.js",
+    "lint.js",
+    "USAGE"
+  ],
   "dependencies": {
     "deglob": "^4.0.0",
-    "find-root": "^1.1.0",
     "github-url-from-git": "^1.5.0",
-    "markdown-extensions": "^1.1.1",
+    "read-closest-package": "^1.2.0",
     "remark": "^12.0.1",
-    "remark-changelog": "^1.0.0",
+    "remark-changelog": "^1.2.0",
     "remark-collapse": "~0.1.2",
     "remark-git-contributors": "^3.0.0",
     "remark-github": "^9.0.1",
@@ -48,13 +55,13 @@
     "unified-engine": "^8.0.0"
   },
   "devDependencies": {
+    "depcheck": "^1.2.0",
     "git-pull-or-clone": "^2.0.1",
     "level-community": "^3.0.0",
     "npm-consider": "^1.7.0",
     "rimraf": "^3.0.0",
     "standard": "^15.0.0",
-    "tape": "^5.0.1",
-    "vfile-reporter-json": "^2.0.0"
+    "tape": "^5.0.1"
   },
   "repository": {
     "type": "git",

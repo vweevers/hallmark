@@ -30,49 +30,10 @@ if (argv.help) {
 } else if (argv.version) {
   console.log(require('./package.json').version)
 } else {
-  const deglob = require('deglob')
-  const engine = require('unified-engine')
-  const options = require('./options')
+  argv.files = argv._
 
-  const cwd = process.cwd()
-  const glob = argv._.length ? argv._ : ['*.md']
-  const pkg = getNearestPackage(cwd) || {}
-  const packageOpts = Object.assign({}, pkg.hallmark)
-  const repo = pkg.repository ? pkg.repository.url || pkg.repository : originRepo(cwd) || ''
-  const ignore = [].concat(packageOpts.ignore || []).concat(argv.ignore || [])
-
-  packageOpts.validateLinks = packageOpts.validateLinks !== false
-  packageOpts.paddedTable = packageOpts.paddedTable !== false
-  packageOpts.toc = packageOpts.toc !== false
-
-  deglob(glob, { usePackageJson: false, cwd, ignore }, function (err, files) {
+  require('./index.js')(argv, function (err, code) {
     if (err) throw err
-    if (files.length === 0) process.exit()
-
-    engine(options(argv, pkg, packageOpts, files, cwd, repo), function (err, code) {
-      if (err) throw err
-      process.exit(code)
-    })
+    process.exit(code)
   })
-}
-
-function getNearestPackage (cwd) {
-  const findRoot = require('find-root')
-  const fs = require('fs')
-  const path = require('path')
-
-  try {
-    const fp = path.join(findRoot(cwd), 'package.json')
-    return JSON.parse(fs.readFileSync(fp, 'utf8'))
-  } catch (err) {
-
-  }
-}
-
-function originRepo (cwd) {
-  // Don't pass cwd for now (jonschlinkert/parse-git-config#13)
-  const origin = require('remote-origin-url').sync(/* cwd */)
-  const ghurl = require('github-url-from-git')
-
-  return origin ? ghurl(origin) : null
 }
