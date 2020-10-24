@@ -20,8 +20,8 @@
   ],
   "dependencies": {
     "deglob": "^4.0.0",
+    "find-file-up": "^2.0.1",
     "github-url-from-git": "^1.5.0",
-    "read-closest-package": "^1.2.0",
     "remark": "^12.0.1",
     "remark-changelog": "^1.2.0",
     "remark-collapse": "~0.1.2",

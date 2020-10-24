@@ -1,10 +1,12 @@
 'use strict'
 
 const deglob = require('deglob')
-const closest = require('read-closest-package')
+const find = require('find-file-up')
 const engine = require('unified-engine')
 const color = require('supports-color').stdout
 const processor = require('remark')
+const path = require('path')
+const fs = require('fs')
 
 module.exports = function hallmark (options, callback) {
   if (typeof options === 'function') {
@@ -12,14 +14,14 @@ module.exports = function hallmark (options, callback) {
   }
 
   const fix = !!options.fix
-  const cwd = options.cwd || process.cwd()
-  const pkg = closest.sync({ cwd }) || {}
-  const packageOpts = pkg.hallmark || {}
-  const globs = options.files && options.files.length ? options.files : ['*.md']
-  const repository = repo(options.repository) || repo(packageOpts.repository) || repo(pkg.repository) || originRepo(cwd) || ''
-  const ignore = concat('ignore', packageOpts, options)
+  const cwd = path.resolve(options.cwd || '.')
+  const pkg = read('package.json', cwd) || {}
+  const rc = Object.assign({}, read('.hallmarkrc', cwd), pkg.hallmark)
+  const files = first('files', options, rc) || ['*.md']
+  const repository = repo(first('repository', options, rc, pkg)) || originRepo(cwd) || ''
+  const ignore = concat('ignore', rc, options)
 
-  deglob(globs, { usePackageJson: false, cwd, ignore }, function (err, files) {
+  deglob(files, { usePackageJson: false, cwd, ignore }, function (err, files) {
     if (err) throw err
 
     if (!files.length) {
@@ -41,17 +43,13 @@ module.exports = function hallmark (options, callback) {
       }
     }
 
-    const paddedTable = packageOpts.paddedTable !== false
-    const validateLinks = packageOpts.validateLinks !== false
-    const toc = packageOpts.toc !== false
-
-    const contributors = 'contributors' in packageOpts
-      ? packageOpts.contributors
-      : packageOpts.community
-
-    const changelogOptions = Object.assign({}, packageOpts.changelog, options.changelog)
-    const plugins = { plugins: concat('plugins', packageOpts, options) }
-    const fixers = { plugins: concat('fixers', packageOpts, options) }
+    const paddedTable = rc.paddedTable !== false
+    const validateLinks = rc.validateLinks !== false
+    const toc = rc.toc !== false
+    const contributors = 'contributors' in rc ? rc.contributors : rc.community
+    const changelog = Object.assign({}, rc.changelog, options.changelog)
+    const plugins = { plugins: concat('plugins', rc, options) }
+    const fixers = { plugins: concat('fixers', rc, options) }
 
     engine({
       processor,
@@ -78,7 +76,7 @@ module.exports = function hallmark (options, callback) {
             }]
           : null,
 
-        [require('remark-changelog'), { cwd, fix, pkg, repository, ...changelogOptions }],
+        [require('remark-changelog'), { cwd, fix, pkg, repository, ...changelog }],
         [require('remark-github'), { repository }],
 
         // TODO: https://github.com/vweevers/hallmark/issues/36
@@ -113,12 +111,23 @@ module.exports = function hallmark (options, callback) {
   })
 }
 
+function read (file, cwd) {
+  const fp = find.sync(file, cwd, 100)
+  return fp ? JSON.parse(fs.readFileSync(fp, 'utf8')) : null
+}
+
+function first (key, ...sources) {
+  for (const src of sources) {
+    if (src[key]) return src[key]
+  }
+}
+
 function repo (repository) {
   return repository ? repository.url || repository : null
 }
 
-function concat (key, packageOpts, options) {
-  return [].concat(packageOpts[key] || []).concat(options[key] || [])
+function concat (key, rc, options) {
+  return [].concat(rc[key] || []).concat(options[key] || [])
 }
 
 function collapseToc () {

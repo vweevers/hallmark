@@ -30,7 +30,9 @@ if (argv.help) {
 } else if (argv.version) {
   console.log(require('./package.json').version)
 } else {
-  argv.files = argv._
+  if (argv._.length) {
+    argv.files = argv._
+  }
 
   require('./index.js')(argv, function (err, code) {
     if (err) throw err
