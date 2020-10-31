@@ -41,7 +41,7 @@
 This module saves you time in three ways:
 
 - **No configuration.** The easiest way to enforce markdown code quality in your project. No decisions to make. No `remark` plugins to manage.
-- **Automatically format markdown.** Run `hallmark --fix` to format markdown, wrap GitHub issues and usernames in links, autocomplete a `CHANGELOG.md` following [Keep A Changelog](https://keepachangelog.com/en/1.0.0/), and more.
+- **Automatically format markdown.** Run `hallmark fix` to format markdown, wrap GitHub issues and usernames in links, autocomplete a `CHANGELOG.md` following [Keep A Changelog](https://keepachangelog.com/en/1.0.0/), and more.
 - **Catch style issues & mistakes early.** Save code review time by eliminating back-and-forth between reviewer & contributor.
 
 ## Quick Start
@@ -52,16 +52,22 @@ Lint `*.md` files:
 hallmark
 ```
 
-Lint and fix:
+Fix markdown files in place:
 
 ```
-hallmark --fix
+hallmark fix
 ```
 
-Lint and fix custom files:
+Fix custom files:
 
 ```
-hallmark --fix CHANGELOG.md docs/*.md
+hallmark fix CHANGELOG.md docs/*.md
+```
+
+Add new minor version to changelog:
+
+```
+hallmark bump minor
 ```
 
 ## What You Might Do
@@ -92,8 +98,8 @@ README.md
 
 ## Requirements
 
-- A `package.json` must exist, with a [`repository`](https://docs.npmjs.com/files/package.json#repository) property
-- The working directory must be a git repository.
+- The working directory must be a git repository
+- It must either contain a `package.json` with a [`repository`](https://docs.npmjs.com/files/package.json#repository) property, or have a git `origin` remote
 
 ## Rules
 
@@ -125,18 +131,24 @@ README.md
 
 ## Usage
 
-`hallmark [options] [pattern ...]`
+`hallmark [command] [options] [pattern ...]`
 
-Lint or fix files in the current working directory. By default `hallmark` includes files matching `*.md`. Pass one or more glob patterns to override this. A pattern can either be a path to a file or a glob pattern. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
+Lint or fix files in the current working directory. By default `hallmark` includes files matching `*.md`. Pass one or more glob patterns to override this. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
+
+Commands:
+
+- `lint`: lint markdown files (default)
+- `fix`: fix markdown files
+- `bump <target>`: add new entry to changelog. Target must be a release type (major, minor, patch, premajor, preminor, prepatch, prerelease) or a version.
 
 Options:
 
-- `--fix`: fix issues. Modifies files in place.
 - `--ignore / -i <pattern>`: files to ignore. Repeat to specify multiple patterns (e.g. `-i a.md -i docs/*.md`). Can also be configured via [Package Options](#package-options).
 - `--help`: print usage and exit
 - `--version`: print version and exit
 - `--report <reporter>`: see [Reporters](#reporters)
 - `--[no-]color`: force color in report (detected by default)
+- `--fix`: backwards-compatible alias for fix command
 
 ## Package Options
 
@@ -156,7 +168,7 @@ You can add a `hallmark` object to your `package.json` with additional configura
 
 ### `ignore`
 
-A string or array of files to ignore. Merged with `--ignore / -i` if any (see [Usage](#usage)).
+A string or array of files to ignore. Merged with `--ignore / -i` if any.
 
 ### `validateLinks`
 
@@ -176,11 +188,11 @@ String or array. See [Contributors Table](#contributors-table) for details. Alia
 
 ### `plugins`
 
-An array of extra plugins, to be applied in both lint and `--fix` mode.
+An array of extra plugins, to be applied in both lint and fix mode.
 
 ### `fixers`
 
-An array of extra plugins, to be applied in `--fix` mode.
+An array of extra plugins, to be applied in fix mode.
 
 ## Opt-in Features
 
@@ -194,7 +206,7 @@ Add this heading to a markdown file:
 ## Table of Contents
 ```
 
-Running `hallmark --fix` will then create or update a table of contents.
+Running `hallmark fix` will then create or update a table of contents.
 
 ### Contributors Table
 
@@ -212,7 +224,7 @@ Or this heading to a `README.md`:
 ## Contributors
 ```
 
-Running `hallmark --fix` will then render contributors from `git` history to a markdown table. To add links to GitHub and social profiles of contributors, add the `contributors` [Package Option](#package-options):
+Running `hallmark fix` will then render contributors from `git` history to a markdown table. To add links to GitHub and social profiles of contributors, add the `contributors` [Package Option](#package-options):
 
 ```json
 "hallmark": {

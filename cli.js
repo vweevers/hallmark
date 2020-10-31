@@ -22,20 +22,49 @@ const argv = require('subarg')(process.argv.slice(2), {
 })
 
 if (argv.help) {
+  usage()
+} else if (argv.version) {
+  console.log(require('./package.json').version)
+} else {
+  const rest = argv._
+
+  if (rest[0] === 'lint') {
+    argv.files = files(rest.slice(1))
+    require('./index.js').lint(argv, done)
+  } else if (rest[0] === 'fix') {
+    argv.files = files(rest.slice(1))
+    require('./index.js').fix(argv, done)
+  } else if (rest[0] === 'bump') {
+    const target = rest[1]
+
+    if (!target) {
+      usage()
+      process.exit(1)
+    }
+
+    argv.files = files(rest.slice(2))
+    require('./index.js').bump(target, argv, done)
+  } else {
+    // Old usage (no commands)
+    // TODO: deprecate?
+    argv.files = files(rest)
+    require('./index.js')[argv.fix ? 'fix' : 'lint'](argv, done)
+  }
+}
+
+function files (rest) {
+  return rest.length ? rest : null
+}
+
+function done (err, result) {
+  if (err) throw err
+  process.exit(result.code)
+}
+
+function usage () {
   const fs = require('fs')
   const path = require('path')
   const usage = path.join(__dirname, 'USAGE')
 
   fs.createReadStream(usage).pipe(process.stdout)
-} else if (argv.version) {
-  console.log(require('./package.json').version)
-} else {
-  if (argv._.length) {
-    argv.files = argv._
-  }
-
-  require('./index.js')(argv, function (err, code) {
-    if (err) throw err
-    process.exit(code)
-  })
 }

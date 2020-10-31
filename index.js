@@ -8,11 +8,7 @@ const processor = require('remark')
 const path = require('path')
 const fs = require('fs')
 
-module.exports = function hallmark (options, callback) {
-  if (typeof options === 'function') {
-    return hallmark({}, options)
-  }
-
+function hallmark (options, callback) {
   const fix = !!options.fix
   const cwd = path.resolve(options.cwd || '.')
   const pkg = read('package.json', cwd) || {}
@@ -25,7 +21,7 @@ module.exports = function hallmark (options, callback) {
     if (err) throw err
 
     if (!files.length) {
-      callback(null, 0)
+      callback(null, { code: 0, files: [] })
       return
     }
 
@@ -107,8 +103,49 @@ module.exports = function hallmark (options, callback) {
       frail: true,
       // "Do not report successful files"
       quiet: true
-    }, callback)
+    }, function (err, code, context) {
+      if (err) return callback(err)
+      callback(null, { code, files: context.files })
+    })
   })
+}
+
+exports.lint = function (options, callback) {
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
+  }
+
+  hallmark({ ...options, fix: false }, callback)
+}
+
+exports.fix = function (options, callback) {
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
+  }
+
+  hallmark({ ...options, fix: true }, callback)
+}
+
+exports.bump = function (target, options, callback) {
+  if (!target) {
+    throw new TypeError('First argument "target" is required')
+  } else if (typeof target !== 'string') {
+    throw new TypeError('First argument "target" must be a string')
+  }
+
+  if (typeof options === 'function') {
+    callback = options
+    options = {}
+  }
+
+  const changelog = {
+    ...options.changelog,
+    add: target
+  }
+
+  hallmark({ ...options, changelog, fix: true }, callback)
 }
 
 function read (file, cwd) {

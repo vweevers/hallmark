@@ -1,27 +1,37 @@
-Usage: hallmark [options] [pattern ...]
+Usage: hallmark [command] [options] [pattern ...]
 
-  Markdown Style Guide, with linter and automatic fixer.
+  Lint or fix files in the current working directory. By default hallmark
+  includes files matching "*.md". Pass one or more glob patterns to override
+  this. Files matching .gitignore patterns are ignored. To ignore additional
+  files, use the --ignore option.
+
+Commands:
+
+  lint                      Lint markdown files (default)
+  fix                       Fix markdown files
+  bump <target>             Add new entry to changelog. Target must be a
+                            release type (major, minor, patch, premajor,
+                            preminor, prepatch, prerelease) or a version.
 
 Options:
 
-      --fix                 Fix issues. Modifies files in place.
   -i  --ignore <pattern>    Files to ignore. Repeat to specify multiple patterns
   -h  --help                Print usage and exit
   -v  --version             Print version and exit
       --report <reporter>   Specify reporter
       --[no-]color          Force color in report (detected by default)
+      --fix                 Backwards-compatible alias for fix command
 
 Examples:
 
   # Lint *.md files
   $ hallmark
 
-  # Lint and fix
-  $ hallmark --fix
+  # Fix *.md files
+  $ hallmark fix
 
-  # Lint and fix custom files
-  $ hallmark --fix CHANGELOG.md docs/*.md
+  # Fix custom files
+  $ hallmark fix CHANGELOG.md docs/*.md
 
-  # Use a custom reporter
-  $ hallmark --report json
-  $ hallmark --report [ json --pretty ]
+  # Add new minor version to changelog
+  $ hallmark bump minor
