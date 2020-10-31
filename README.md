@@ -21,6 +21,7 @@
 - [Usage](#usage)
 - [Package Options](#package-options)
   - [`ignore`](#ignore)
+  - [`changelog`](#changelog)
   - [`validateLinks`](#validatelinks)
   - [`paddedTable`](#paddedtable)
   - [`toc`](#toc)
@@ -160,15 +161,30 @@ You can add a `hallmark` object to your `package.json` with additional configura
   "hallmark": {
     "ignore": [
       "CONTRIBUTING.md"
-    ],
-    "validateLinks": false
+    ]
   }
+}
+```
+
+Alternatively, for use in non-node projects, place a `.hallmarkrc` file in the working directory or any of its parent directories:
+
+```json
+{
+  "ignore": [
+    "CONTRIBUTING.md"
+  ]
 }
 ```
 
 ### `ignore`
 
 A string or array of files to ignore. Merged with `--ignore / -i` if any.
+
+### `changelog`
+
+An object containing options to be passed to [`remark-changelog`](https://github.com/vweevers/remark-changelog):
+
+- `submodules` (boolean): enable experimental git submodule support. Will (upon encountering new or empty changelog entries) collect commits from submodules and list them in the changelog as `<submodule>: <message>`.
 
 ### `validateLinks`
 
