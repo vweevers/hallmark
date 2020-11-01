@@ -29,7 +29,7 @@ const dependents = [
 ]
 
 for (const repo of dependents) {
-  const cwd = path.join(__dirname, 'dependents', repo.toLowerCase())
+  const cwd = path.resolve(__dirname, '..', 'dependents', repo.toLowerCase())
   const url = `https://github.com/${repo}.git`
 
   test(`smoke test ${repo}`, function (t) {
@@ -38,7 +38,7 @@ for (const repo of dependents) {
 
       // Pipe stdout to stderr because our stdout is for TAP
       const stdio = ['ignore', process.stderr, process.stderr, 'ipc']
-      const cli = path.join(__dirname, 'cli.js')
+      const cli = path.resolve(__dirname, '..', 'cli.js')
 
       cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
         t.is(code, 0, 'hallmark linter exited with code 0')
