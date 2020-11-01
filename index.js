@@ -4,11 +4,14 @@ const deglob = require('deglob')
 const find = require('find-file-up')
 const engine = require('unified-engine')
 const color = require('supports-color').stdout
+const fromCallback = require('catering').fromCallback
 const processor = require('remark')
 const path = require('path')
 const fs = require('fs')
 
 function hallmark (options, callback) {
+  callback = fromCallback(callback)
+
   const fix = !!options.fix
   const cwd = path.resolve(options.cwd || '.')
   const pkg = read('package.json', cwd) || {}
@@ -108,6 +111,8 @@ function hallmark (options, callback) {
       callback(null, { code, files: context.files })
     })
   })
+
+  return callback.promise
 }
 
 exports.lint = function (options, callback) {
@@ -116,7 +121,7 @@ exports.lint = function (options, callback) {
     options = {}
   }
 
-  hallmark({ ...options, fix: false }, callback)
+  return hallmark({ ...options, fix: false }, callback)
 }
 
 exports.fix = function (options, callback) {
@@ -125,7 +130,7 @@ exports.fix = function (options, callback) {
     options = {}
   }
 
-  hallmark({ ...options, fix: true }, callback)
+  return hallmark({ ...options, fix: true }, callback)
 }
 
 exports.bump = function (target, options, callback) {
@@ -138,6 +143,8 @@ exports.bump = function (target, options, callback) {
   if (typeof options === 'function') {
     callback = options
     options = {}
+  } else if (options == null) {
+    options = {}
   }
 
   const changelog = {
@@ -145,7 +152,7 @@ exports.bump = function (target, options, callback) {
     add: target
   }
 
-  hallmark({ ...options, changelog, fix: true }, callback)
+  return hallmark({ ...options, changelog, fix: true }, callback)
 }
 
 function read (file, cwd) {
