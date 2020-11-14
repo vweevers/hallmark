@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.1.0] - 2020-11-14
+
+### Added
+
+- Add `bump` command to add a new version to changelog ([`9e2b53b`](https://github.com/vweevers/hallmark/commit/9e2b53b))
+  - As an example, `hallmark bump minor` added this 3.1.0 entry, prepopulated with git commits :sparkles:
+  - We now also support `hallmark lint` and `hallmark fix` as commands, which going forward are preferred over `hallmark` and `hallmark --fix` respectively
+- Export programmatic API ([`3dc1c87`](https://github.com/vweevers/hallmark/commit/3dc1c87), [`6867517`](https://github.com/vweevers/hallmark/commit/6867517), [`d67f191`](https://github.com/vweevers/hallmark/commit/d67f191))
+  - Used by [`hallmark-lint-action`](https://github.com/vweevers/hallmark-lint-action) :sparkles:
+- Add [`remark-autolink-references`](https://github.com/vweevers/remark-autolink-references) ([`6e36fda`](https://github.com/vweevers/hallmark/commit/6e36fda))
+  - Transform references like `JIRA-123` into links :sparkles:
+- Fallback to git remote to get repository url ([`dbbe165`](https://github.com/vweevers/hallmark/commit/dbbe165))
+- Support `.hallmarkrc` as alternative to `package.json` ([`6469e03`](https://github.com/vweevers/hallmark/commit/6469e03), [`fe50723`](https://github.com/vweevers/hallmark/commit/fe50723))
+  - Hallmark can now be used on non-node projects :sparkles:
+
 ## [3.0.0] - 2020-08-22
 
 ### Changed
@@ -106,6 +121,8 @@
 ## 0.0.1 - 2018-06-23
 
 :seedling: Initial release.
+
+[3.1.0]: https://github.com/vweevers/hallmark/compare/v3.0.0...v3.1.0
 
 [3.0.0]: https://github.com/vweevers/hallmark/compare/v2.1.0...v3.0.0
 
