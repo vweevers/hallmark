@@ -21,6 +21,7 @@
 - [Usage](#usage)
 - [Package Options](#package-options)
   - [`ignore`](#ignore)
+  - [`autolinkReferences`](#autolinkreferences)
   - [`changelog`](#changelog)
   - [`validateLinks`](#validatelinks)
   - [`paddedTable`](#paddedtable)
@@ -179,6 +180,37 @@ Alternatively, for use in non-node projects, place a `.hallmarkrc` file in the w
 ### `ignore`
 
 A string or array of files to ignore. Merged with `--ignore / -i` if any.
+
+### `autolinkReferences`
+
+Autolink custom references [like GitHub Pro](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuring-autolinks-to-reference-external-resources) does. Must be an object with a `prefix` and `url` (if `autolinkReferences` is not set, this feature does nothing). For example, given:
+
+```json
+{
+  "autolinkReferences": {
+    "prefix": "JIRA-",
+    "url": "https://example.atlassian.net/browse/JIRA-<num>"
+  }
+}
+```
+
+Then `hallmark fix` will transform:
+
+```md
+### Fixed
+
+- Prevent infinite loop (JIRA-4275)
+```
+
+To:
+
+```md
+### Fixed
+
+- Prevent infinite loop ([JIRA-4275](https://example.atlassian.net/browse/JIRA-4275))
+```
+
+While `hallmark lint` will warn about unlinked references.
 
 ### `changelog`
 

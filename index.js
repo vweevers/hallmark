@@ -78,6 +78,14 @@ function hallmark (options, callback) {
         [require('remark-changelog'), { cwd, fix, pkg, repository, ...changelog }],
         [require('remark-github'), { repository }],
 
+        // Does nothing unless configured
+        rc.autolinkReferences
+          ? [require('remark-autolink-references'), {
+              ...rc.autolinkReferences,
+              fix
+            }]
+          : null,
+
         // TODO: https://github.com/vweevers/hallmark/issues/36
         toc ? [require('remark-toc'), { tight: true }] : null,
         toc ? [require('remark-collapse'), collapseToc()] : null,
