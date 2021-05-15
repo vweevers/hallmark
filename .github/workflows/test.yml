@@ -1,0 +1,28 @@
+name: Test
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [10, 12, 14, 16]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependents
+        uses: actions/cache@v2
+        with:
+          path: dependents
+          key: ${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('test/dependents.js') }}
+      - name: Use node ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install
+        run: npm install
+      - name: Test
+        run: npm test

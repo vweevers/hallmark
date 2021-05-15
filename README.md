@@ -5,9 +5,9 @@
 
 [![npm status](http://img.shields.io/npm/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
 [![node](https://img.shields.io/node/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
-[![Travis build status](https://img.shields.io/travis/vweevers/hallmark.svg?label=travis)](http://travis-ci.org/vweevers/hallmark)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Markdown Style Guide](https://img.shields.io/badge/md_style-hallmark-brightgreen.svg)](https://www.npmjs.org/package/hallmark)
+[![Test](https://img.shields.io/github/workflow/status/vweevers/hallmark/Test?label=test)](https://github.com/vweevers/hallmark/actions/workflows/test.yml)
+[![JavaScript Style Guide](https://img.shields.io/badge/standard-informational?logo=javascript&logoColor=fff)](https://standardjs.com)
+[![Markdown Style Guide](https://img.shields.io/badge/hallmark-informational?logo=markdown)](https://github.com/vweevers/hallmark)
 
 ## Table of Contents
 
