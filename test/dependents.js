@@ -2,25 +2,27 @@
 
 const test = require('tape')
 const path = require('path')
-const gitPullOrClone = require('git-pull-or-clone')
-const rimraf = require('rimraf')
+const pull = require('git-pull-or-clone')
 const cp = require('child_process')
 
 const dependents = [
-  // 'airtap/airtap', // See vweevers/hallmark#45
-  // 'deltachat/deltachat-desktop', // Failing
-  // 'deltachat/deltachat-node', // Has empty releases
+  'airtap/airtap',
+  // 'deltachat/deltachat-desktop', // Invalid
+  // 'deltachat/deltachat-node', // Invalid
   'Level/abstract-leveldown',
   'Level/bench',
   'Level/codec',
   'Level/compose',
+  'Level/deferred-leveldown',
+  'Level/leveldown',
   'Level/level-js',
-
-  // TODO: Don't use literal URLs without angle brackets
-  // 'Level/levelup',
-
+  'Level/levelup',
+  'Level/packager',
+  'Level/mem',
   'Level/memdown',
+  'Level/party',
   'Level/subleveldown',
+  'prebuild/prebuild-install',
   'vweevers/detect-tabular',
   'vweevers/keyspace',
   'vweevers/node-docker-machine',
@@ -67,8 +69,8 @@ for (const repo of dependents) {
               t.is(code, 0, 'hallmark linter on fixed markdown exited with code 0')
 
               // Start fresh on the next test run
-              rimraf(cwd, { glob: false }, function (err) {
-                if (err) throw err
+              cp.execFile('git', ['checkout', '.'], { cwd }, function (err) {
+                t.ifError(err, 'no git checkout error')
                 t.end()
               })
             })
@@ -76,13 +78,5 @@ for (const repo of dependents) {
         })
       })
     })
-  })
-}
-
-function pull (url, cwd, callback) {
-  // Clone fully because we need git history for remark-git-contributors
-  gitPullOrClone(url, cwd, { depth: Infinity }, function (err) {
-    if (err) return callback(err)
-    cp.execFile('git', ['fetch', '--tags'], { cwd }, callback)
   })
 }
