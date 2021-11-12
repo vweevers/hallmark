@@ -90,10 +90,10 @@ Markdown is then checked automatically when you run `npm test`:
 
 ```
 $ npm test
-README.md
-  75:27-75:42  warning  Found reference to undefined definition  no-undefined-references  remark-lint
+README.md:5:3
+  ⚠️  5:3  Found reference to undefined definition  remark-lint:no-undefined-references
 
-‼ 1 warning
+  1 warning
 ```
 
 ## Requirements
@@ -252,9 +252,9 @@ Running `hallmark fix` will then create or update a table of contents.
 
 ## Reporters
 
-Various reporters are available:
+The default reporter is [`vfile-reporter-shiny`](https://github.com/vweevers/vfile-reporter-shiny). Various other reporters are available:
 
-- [`vfile-reporter`](https://npmjs.org/package/vfile-reporter) (default)
+- [`vfile-reporter`](https://npmjs.org/package/vfile-reporter)
 - [`vfile-reporter-json`](https://npmjs.org/package/vfile-reporter-json)
 - [`vfile-reporter-pretty`](https://npmjs.org/package/vfile-reporter-pretty)
 

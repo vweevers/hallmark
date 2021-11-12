@@ -40,6 +40,8 @@ function hallmark (options, callback) {
         reporterOptions = reporter
         reporter = reporter._[0]
       }
+    } else {
+      reporter = require('vfile-reporter-shiny')
     }
 
     const paddedTable = rc.paddedTable !== false

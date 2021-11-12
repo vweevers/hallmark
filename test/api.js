@@ -14,8 +14,8 @@ test('lints various', function (t) {
     t.same(file.messages.map(String), [
       'test.md:5:3-5:6: Found reference to undefined definition',
       'test.md:6:3-6:21: Don’t use literal URLs without angle brackets',
-      'test.md:16:1-16:9: Code blocks should be fenced', // TODO: sort messages by line
       'test.md:12:23: Cell should be padded',
+      'test.md:16:1-16:9: Code blocks should be fenced',
       'test.md:28:4-28:5: Checked checkboxes should use `x` as a marker'
     ])
     t.end()
