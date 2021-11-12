@@ -2,6 +2,7 @@
 
 const deglob = require('deglob')
 const find = require('find-file-up')
+const Githost = require('find-githost')
 const engine = require('unified-engine')
 const color = require('supports-color').stdout
 const fromCallback = require('catering').fromCallback
@@ -17,7 +18,7 @@ function hallmark (options, callback) {
   const pkg = read('package.json', cwd) || {}
   const rc = Object.assign({}, read('.hallmarkrc', cwd), pkg.hallmark)
   const files = first('files', options, rc) || ['*.md']
-  const repository = repo(first('repository', options, rc, pkg)) || originRepo(cwd) || ''
+  const repository = repo(cwd, options, rc, pkg)
   const ignore = concat('ignore', rc, options)
 
   deglob(files, { usePackageJson: false, cwd, ignore }, function (err, files) {
@@ -178,8 +179,20 @@ function first (key, ...sources) {
   }
 }
 
-function repo (repository) {
-  return repository ? repository.url || repository : null
+function repo (cwd, options, rc, pkg) {
+  const override = options.repository || rc.repository
+  const committish = false
+
+  if (override) {
+    return Githost.fromUrl(override, { committish }).https()
+  }
+
+  const host = (
+    Githost.fromPkg(pkg, { committish, optional: true }) ||
+    Githost.fromGit(cwd, { committish })
+  )
+
+  return host.https()
 }
 
 function concat (key, rc, options) {
@@ -191,12 +204,4 @@ function collapseToc () {
     test: /^table of contents$/i,
     summary: 'Click to expand'
   }
-}
-
-function originRepo (cwd) {
-  // Don't pass cwd for now (jonschlinkert/parse-git-config#13)
-  const origin = require('remote-origin-url').sync(/* cwd */)
-  const ghurl = require('github-url-from-git')
-
-  return origin ? ghurl(origin) : null
 }
