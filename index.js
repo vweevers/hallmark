@@ -31,7 +31,9 @@ function hallmark (options, callback) {
     let reporter
     let reporterOptions
 
-    if (options.report) {
+    if (options.report === false) {
+      reporter = function noop () {}
+    } else if (options.report) {
       // Only take one --report option
       reporter = [].concat(options.report)[0]
 

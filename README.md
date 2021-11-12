@@ -272,6 +272,8 @@ hallmark --report json
 hallmark --report [ json --pretty ]
 ```
 
+In the programmatic API of `hallmark` (which is not documented yet) the reporter can also be disabled by passing `{ report: false }` as the options.
+
 ## Install
 
 With [npm](https://npmjs.org) do:
