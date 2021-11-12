@@ -21,7 +21,7 @@ function hallmark (options, callback) {
   const ignore = concat('ignore', rc, options)
 
   deglob(files, { usePackageJson: false, cwd, ignore }, function (err, files) {
-    if (err) throw err
+    if (err) return callback(err)
 
     if (!files.length) {
       callback(null, { code: 0, files: [] })
@@ -45,10 +45,17 @@ function hallmark (options, callback) {
     const paddedTable = rc.paddedTable !== false
     const validateLinks = rc.validateLinks !== false
     const toc = rc.toc !== false
-    const contributors = 'contributors' in rc ? rc.contributors : rc.community
     const changelog = Object.assign({}, rc.changelog, options.changelog)
     const plugins = { plugins: concat('plugins', rc, options) }
     const fixers = { plugins: concat('fixers', rc, options) }
+
+    if ('contributors' in rc) {
+      return callback(new Error("The 'contributors' option has been removed"))
+    }
+
+    if ('community' in rc) {
+      return callback(new Error("The 'community' option has been removed"))
+    }
 
     engine({
       processor,
@@ -68,13 +75,6 @@ function hallmark (options, callback) {
       reporter,
       reporterOptions,
       plugins: [
-        // Skip updating contributors table in lint mode
-        fix && contributors !== false && options.contributors !== false
-          ? [require('remark-git-contributors'), {
-              contributors: contributors || null
-            }]
-          : null,
-
         [require('remark-common-changelog'), { cwd, fix, pkg, repository, ...changelog }],
         [require('remark-github'), { repository }],
 

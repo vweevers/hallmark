@@ -26,12 +26,10 @@
   - [`validateLinks`](#validatelinks)
   - [`paddedTable`](#paddedtable)
   - [`toc`](#toc)
-  - [`contributors`](#contributors)
   - [`plugins`](#plugins)
   - [`fixers`](#fixers)
 - [Opt-in Features](#opt-in-features)
   - [Table of Contents](#table-of-contents-1)
-  - [Contributors Table](#contributors-table)
 - [Reporters](#reporters)
 - [Install](#install)
 - [License](#license)
@@ -230,10 +228,6 @@ Boolean. Set to `false` to keep markdown tables compact. A temporary option unti
 
 Boolean. Set to `false` to skip generating (or replacing) a Table of Contents. A temporary option until we write a more flexible plugin ([#36](https://github.com/vweevers/hallmark/issues/36)).
 
-### `contributors`
-
-String or array. See [Contributors Table](#contributors-table) for details. Aliased as `community`. Set to `false` to disable this feature entirely.
-
 ### `plugins`
 
 An array of extra plugins, to be applied in both lint and fix mode.
@@ -255,42 +249,6 @@ Add this heading to a markdown file:
 ```
 
 Running `hallmark fix` will then create or update a table of contents.
-
-### Contributors Table
-
-_Note: this feature might get removed in a next major version ([#38](https://github.com/vweevers/hallmark/issues/38))._
-
-Add this heading to an otherwise empty `CONTRIBUTORS.md`:
-
-```markdown
-# Contributors
-```
-
-Or this heading to a `README.md`:
-
-```markdown
-## Contributors
-```
-
-Running `hallmark fix` will then render contributors from `git` history to a markdown table. To add links to GitHub and social profiles of contributors, add the `contributors` [Package Option](#package-options):
-
-```json
-"hallmark": {
-  "contributors": [{
-    "name": "Sara",
-    "email": "sara@example.com",
-    "github": "sara",
-    "twitter": "sara"
-  }]
-}
-```
-
-Where `contributors` is either:
-
-- An array in the form of `[{ email, name, … }, … ]`;
-- A module id or path to a file that exports `contributors` or `{ contributors }`.
-
-Alternatively, put the metadata in the [`author` or `contributors` fields](https://docs.npmjs.com/files/package.json#people-fields-author-contributors) in `package.json`. For details, please see [`remark-git-contributors`](https://github.com/remarkjs/remark-git-contributors#metadata).
 
 ## Reporters
 

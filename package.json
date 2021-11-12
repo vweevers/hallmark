@@ -7,7 +7,7 @@
   "bin": "cli.js",
   "main": "index.js",
   "scripts": {
-    "test": "standard && depcheck --ignores level-community && node cli.js && tape test/*.js",
+    "test": "standard && depcheck && node cli.js && tape test/*.js",
     "hallmark": "node cli.js --fix",
     "check-licenses": "npm-consider install --test --production"
   },
@@ -27,7 +27,6 @@
     "remark-autolink-references": "^1.0.0",
     "remark-collapse": "~0.1.2",
     "remark-common-changelog": "^0.0.2",
-    "remark-git-contributors": "^3.0.0",
     "remark-github": "^9.0.1",
     "remark-lint": "^7.0.1",
     "remark-lint-blockquote-indentation": "^2.0.1",
@@ -59,7 +58,6 @@
   "devDependencies": {
     "depcheck": "^1.2.0",
     "git-pull-or-clone": "^2.0.1",
-    "level-community": "^3.0.0",
     "npm-consider": "^1.7.0",
     "standard": "^15.0.0",
     "tape": "^5.0.1",
@@ -87,9 +85,6 @@
   ],
   "engines": {
     "node": ">=6"
-  },
-  "hallmark": {
-    "contributors": false
   },
   "config": {
     "allowedLicenseTypes": [

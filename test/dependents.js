@@ -11,7 +11,7 @@ const dependents = [
   // 'deltachat/deltachat-node', // Invalid
   'Level/abstract-leveldown',
   'Level/bench',
-  'Level/codec',
+  'Level/transcoder',
   'Level/compose',
   'Level/deferred-leveldown',
   'Level/leveldown',
@@ -45,10 +45,7 @@ for (const repo of dependents) {
       cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
         t.is(code, 0, 'hallmark linter exited with code 0')
 
-        // Skip CONTRIBUTORS.md for now (many dependents need updating)
-        const args = ['--fix', '-i', 'CONTRIBUTORS.md']
-
-        cp.fork(cli, args, { cwd, stdio }).on('exit', function (code) {
+        cp.fork(cli, ['--fix'], { cwd, stdio }).on('exit', function (code) {
           t.is(code, 0, 'hallmark fixer exited with code 0')
 
           cp.execFile('git', ['diff', '--color'], { cwd }, function (err, stdout) {
