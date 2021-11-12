@@ -75,7 +75,7 @@ function hallmark (options, callback) {
             }]
           : null,
 
-        [require('remark-changelog'), { cwd, fix, pkg, repository, ...changelog }],
+        [require('remark-common-changelog'), { cwd, fix, pkg, repository, ...changelog }],
         [require('remark-github'), { repository }],
 
         // Does nothing unless configured

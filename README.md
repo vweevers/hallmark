@@ -43,7 +43,7 @@
 This module saves you time in three ways:
 
 - **No configuration.** The easiest way to enforce markdown code quality in your project. No decisions to make. No `remark` plugins to manage.
-- **Automatically format markdown.** Run `hallmark fix` to format markdown, wrap GitHub issues and usernames in links, autocomplete a `CHANGELOG.md` following [Keep A Changelog](https://keepachangelog.com/en/1.0.0/), and more.
+- **Automatically format markdown.** Run `hallmark fix` to format markdown, wrap GitHub issues and usernames in links, autocomplete a `CHANGELOG.md` following [Common Changelog](https://common-changelog.org) and more.
 - **Catch style issues & mistakes early.** Save code review time by eliminating back-and-forth between reviewer & contributor.
 
 ## Quick Start
@@ -214,7 +214,7 @@ While `hallmark lint` will warn about unlinked references.
 
 ### `changelog`
 
-An object containing options to be passed to [`remark-changelog`](https://github.com/vweevers/remark-changelog):
+An object containing options to be passed to [`remark-common-changelog`](https://github.com/vweevers/remark-common-changelog):
 
 - `submodules` (boolean): enable experimental git submodule support. Will (upon encountering new or empty changelog entries) collect commits from submodules and list them in the changelog as `<submodule>: <message>`.
 
