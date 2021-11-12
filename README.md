@@ -8,6 +8,7 @@
 [![Test](https://img.shields.io/github/workflow/status/vweevers/hallmark/Test?label=test)](https://github.com/vweevers/hallmark/actions/workflows/test.yml)
 [![JavaScript Style Guide](https://img.shields.io/badge/standard-informational?logo=javascript&logoColor=fff)](https://standardjs.com)
 [![Markdown Style Guide](https://img.shields.io/badge/hallmark-informational?logo=markdown)](https://github.com/vweevers/hallmark)
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
 ## Table of Contents
 
