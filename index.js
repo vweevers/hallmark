@@ -64,16 +64,7 @@ function hallmark (options, callback) {
 
     engine({
       processor,
-      extensions: [
-        // TODO (next major): only support md and markdown
-        'md',
-        'markdown',
-        'mdown',
-        'mkdn',
-        'mkd',
-        'mdwn',
-        'mkdown'
-      ],
+      extensions: ['md', 'markdown'],
       color,
       files,
       cwd,
