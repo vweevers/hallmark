@@ -59,7 +59,7 @@
     "depcheck": "^1.2.0",
     "git-pull-or-clone": "^2.0.1",
     "npm-consider": "^1.7.0",
-    "standard": "^15.0.0",
+    "standard": "^16.0.4",
     "tape": "^5.0.1",
     "tempy": "0.2.1"
   },
