@@ -55,7 +55,7 @@
     "subarg": "^1.0.0",
     "supports-color": "^9.0.2",
     "unified-engine": "^9.0.4",
-    "vfile-reporter-shiny": "^0.1.2"
+    "vfile-reporter-shiny": "^1.0.0"
   },
   "devDependencies": {
     "depcheck": "^1.4.2",
