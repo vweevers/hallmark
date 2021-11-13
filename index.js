@@ -1,14 +1,19 @@
-'use strict'
-
-const deglob = require('deglob')
-const find = require('find-file-up')
-const Githost = require('find-githost')
-const engine = require('unified-engine')
-const color = require('supports-color').stdout
-const fromCallback = require('catering').fromCallback
-const processor = require('remark')
-const path = require('path')
-const fs = require('fs')
+import deglob from 'deglob'
+import find from 'find-file-up'
+import Githost from 'find-githost'
+import engine from 'unified-engine'
+import { stdout as color } from 'supports-color'
+import { fromCallback } from 'catering'
+import defaultReporter from 'vfile-reporter-shiny'
+import processor from 'remark'
+import remarkCommonChangelog from 'remark-common-changelog'
+import remarkGithub from 'remark-github'
+import remarkAutolinkReferences from 'remark-autolink-references'
+import remarkToc from 'remark-toc'
+import remarkCollapse from 'remark-collapse'
+import path from 'node:path'
+import fs from 'node:fs'
+import linter from './lint.js'
 
 const kPromise = Symbol('promise')
 
@@ -46,7 +51,7 @@ function hallmark (options, callback) {
         reporter = reporter._[0]
       }
     } else {
-      reporter = require('vfile-reporter-shiny')
+      reporter = defaultReporter
     }
 
     const paddedTable = rc.paddedTable !== false
@@ -73,23 +78,23 @@ function hallmark (options, callback) {
       reporter,
       reporterOptions,
       plugins: [
-        [require('remark-common-changelog'), { cwd, fix, pkg, repository, ...changelog }],
-        [require('remark-github'), { repository }],
+        [remarkCommonChangelog, { cwd, fix, pkg, repository, ...changelog }],
+        [remarkGithub, { repository }],
 
         // Does nothing unless configured
         rc.autolinkReferences
-          ? [require('remark-autolink-references'), {
+          ? [remarkAutolinkReferences, {
               ...rc.autolinkReferences,
               fix
             }]
           : null,
 
         // TODO: https://github.com/vweevers/hallmark/issues/36
-        toc ? [require('remark-toc'), { tight: true }] : null,
-        toc ? [require('remark-collapse'), collapseToc()] : null,
+        toc ? [remarkToc, { tight: true }] : null,
+        toc ? [remarkCollapse, collapseToc()] : null,
 
         fix ? fixers : null,
-        require('./lint.js')({ fix, repository, paddedTable, validateLinks }),
+        linter({ fix, repository, paddedTable, validateLinks }),
         plugins
       ].filter(Boolean),
       settings: {
@@ -121,7 +126,7 @@ function hallmark (options, callback) {
   return callback[kPromise]
 }
 
-exports.lint = function (options, callback) {
+export function lint (options, callback) {
   if (typeof options === 'function') {
     callback = options
     options = {}
@@ -130,7 +135,7 @@ exports.lint = function (options, callback) {
   return hallmark({ ...options, fix: false }, callback)
 }
 
-exports.fix = function (options, callback) {
+export function fix (options, callback) {
   if (typeof options === 'function') {
     callback = options
     options = {}
@@ -139,28 +144,29 @@ exports.fix = function (options, callback) {
   return hallmark({ ...options, fix: true }, callback)
 }
 
-exports.cc = {}
-exports.cc.add = function (target, options, callback) {
-  if (!target) {
-    throw new TypeError('First argument "target" is required')
-  } else if (typeof target !== 'string') {
-    throw new TypeError('First argument "target" must be a string')
-  }
+export const cc = {
+  add: function (target, options, callback) {
+    if (!target) {
+      throw new TypeError('First argument "target" is required')
+    } else if (typeof target !== 'string') {
+      throw new TypeError('First argument "target" must be a string')
+    }
 
-  if (typeof options === 'function') {
-    callback = options
-    options = {}
-  } else if (options == null) {
-    options = {}
-  }
+    if (typeof options === 'function') {
+      callback = options
+      options = {}
+    } else if (options == null) {
+      options = {}
+    }
 
-  const changelog = {
-    commits: options.commits !== false,
-    ...options.changelog,
-    add: target
-  }
+    const changelog = {
+      commits: options.commits !== false,
+      ...options.changelog,
+      add: target
+    }
 
-  return hallmark({ ...options, changelog, fix: true }, callback)
+    return hallmark({ ...options, changelog, fix: true }, callback)
+  }
 }
 
 function read (file, cwd) {

@@ -1,11 +1,9 @@
-'use strict'
-
-const test = require('tape')
-const fs = require('fs')
-const path = require('path')
-const tempy = require('tempy') // Locked to 0.2.1 for node 6 support
-const execFileSync = require('child_process').execFileSync
-const hallmark = require('..')
+import test from 'tape'
+import tempy from 'tempy'
+import fs from 'fs'
+import path from 'path'
+import { execFileSync } from 'child_process'
+import * as hallmark from '../index.js'
 
 test('lints various', function (t) {
   run('00-various-input', '00-various-input', 'lint', {}, (err, { file, actual, expected }) => {
@@ -36,8 +34,8 @@ test('fixes various', function (t) {
 
 function run (inputFixture, outputFixture, method, opts, test) {
   const cwd = tempy.directory()
-  const inputFile = path.join(__dirname, 'fixture', inputFixture + '.md')
-  const outputFile = path.join(__dirname, 'fixture', outputFixture + '.md')
+  const inputFile = new URL('./fixture/' + inputFixture + '.md', import.meta.url)
+  const outputFile = new URL('./fixture/' + outputFixture + '.md', import.meta.url)
   const pkgFile = path.join(cwd, 'package.json')
   const mdFile = path.join(cwd, 'test.md')
   const options = opts.options || {}

@@ -1,12 +1,10 @@
 #!/usr/bin/env node
-'use strict'
 
-if (process.version.match(/^v(\d+)\./)[1] < 10) {
-  console.error('hallmark: Node 10 or greater is required. `hallmark` did not run.')
-  process.exit(0)
-}
+import subarg from 'subarg'
+import fs from 'node:fs'
+import * as hallmark from './index.js'
 
-const argv = require('subarg')(process.argv.slice(2), {
+const argv = subarg(process.argv.slice(2), {
   boolean: ['fix', 'help', 'version', 'commits'],
   string: ['report'],
   default: {
@@ -25,16 +23,17 @@ const argv = require('subarg')(process.argv.slice(2), {
 if (argv.help) {
   usage(0)
 } else if (argv.version) {
-  console.log(require('./package.json').version)
+  const fp = new URL('./package.json', import.meta.url)
+  console.log(JSON.parse(fs.readFileSync(fp, 'utf8')).version)
 } else {
   const { commits, _: rest, ...options } = argv
 
   if (rest[0] === 'lint') {
     options.files = files(rest.slice(1))
-    require('./index.js').lint(options, done)
+    hallmark.lint(options, done)
   } else if (rest[0] === 'fix') {
     options.files = files(rest.slice(1))
-    require('./index.js').fix(options, done)
+    hallmark.fix(options, done)
   } else if (rest[0] === 'bump') {
     console.error("Error: the 'bump' command has been renamed to 'cc add'.\n")
     usage(1)
@@ -43,7 +42,7 @@ if (argv.help) {
       const target = rest[2]
       if (!target) usage(1)
       options.files = files(rest.slice(3))
-      require('./index.js').cc.add(target, { ...options, commits }, done)
+      hallmark.cc.add(target, { ...options, commits }, done)
     } else {
       console.error('Error: unknown command.')
       usage(1)
@@ -52,7 +51,7 @@ if (argv.help) {
     // Old usage (no commands)
     // TODO: deprecate?
     options.files = files(rest)
-    require('./index.js')[options.fix ? 'fix' : 'lint'](options, done)
+    hallmark[options.fix ? 'fix' : 'lint'](options, done)
   }
 }
 
@@ -66,9 +65,8 @@ function done (err, result) {
 }
 
 function usage (exitCode) {
-  const fs = require('fs')
-  const path = require('path')
-  const usage = fs.readFileSync(path.join(__dirname, 'USAGE'), 'utf8').trim()
+  const fp = new URL('./USAGE', import.meta.url)
+  const usage = fs.readFileSync(fp, 'utf8').trim()
 
   if (exitCode) {
     console.error(usage)

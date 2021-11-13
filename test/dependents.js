@@ -1,9 +1,10 @@
-'use strict'
+import test from 'tape'
+import path from 'path'
+import pull from 'git-pull-or-clone'
+import cp from 'child_process'
+import { fileURLToPath } from 'node:url'
 
-const test = require('tape')
-const path = require('path')
-const pull = require('git-pull-or-clone')
-const cp = require('child_process')
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const dependents = [
   'airtap/airtap',
@@ -40,7 +41,7 @@ for (const repo of dependents) {
 
       // Pipe stdout to stderr because our stdout is for TAP
       const stdio = ['ignore', process.stderr, process.stderr, 'ipc']
-      const cli = path.resolve(__dirname, '..', 'cli.js')
+      const cli = path.resolve(__dirname, '..', 'compat', 'cli.cjs')
 
       cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
         t.is(code, 0, 'hallmark linter exited with code 0')
