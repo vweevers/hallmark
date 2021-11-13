@@ -1,7 +1,7 @@
 import deglob from 'deglob'
 import find from 'find-file-up'
 import Githost from 'find-githost'
-import engine from 'unified-engine'
+import { engine } from 'unified-engine'
 import supportsColor from 'supports-color'
 import { fromCallback } from 'catering'
 import defaultReporter from 'vfile-reporter-shiny'
