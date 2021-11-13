@@ -20,6 +20,10 @@
 - [Requirements](#requirements)
 - [Rules](#rules)
 - [Usage](#usage)
+  - [Commands](#commands)
+    - [`lint`](#lint)
+    - [`fix`](#fix)
+    - [`cc add <target>`](#cc-add-target)
 - [Package Options](#package-options)
   - [`ignore`](#ignore)
   - [`autolinkReferences`](#autolinkreferences)
@@ -65,10 +69,11 @@ Fix custom files:
 hallmark fix CHANGELOG.md docs/*.md
 ```
 
-Add new minor version to changelog:
+Add new minor version or existing version to changelog, optionally without content:
 
 ```
-hallmark bump minor
+hallmark cc add minor
+hallmark cc add 4.2.0 --no-commits
 ```
 
 ## What You Might Do
@@ -134,13 +139,9 @@ README.md:5:3
 
 `hallmark [command] [options] [pattern ...]`
 
-Lint or fix files in the current working directory. By default `hallmark` includes files matching `*.md`. Pass one or more glob patterns to override this. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
+Lint or fix files in the current working directory. The default command is `lint`.
 
-Commands:
-
-- `lint`: lint markdown files (default)
-- `fix`: fix markdown files
-- `bump <target>`: add new entry to changelog. Target must be a release type (major, minor, patch, premajor, preminor, prepatch, prerelease) or a version.
+By default `hallmark` includes files matching `*.md`. Pass one or more glob patterns to override this. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
 
 Options:
 
@@ -150,6 +151,37 @@ Options:
 - `--report <reporter>`: see [Reporters](#reporters)
 - `--[no-]color`: force color in report (detected by default)
 - `--fix`: backwards-compatible alias for fix command
+
+### Commands
+
+#### `lint`
+
+Lint markdown files.
+
+#### `fix`
+
+Fix markdown files in place.
+
+#### `cc add <target>`
+
+Add a release to `CHANGELOG.md` and populate it with commits. The `target` must be one of:
+
+- A release type: `major`, `minor`, `patch`, `premajor`, `preminor`, `prepatch`, `prerelease`
+  - These take the current version from the semver-latest tag, release or `package.json` (whichever is greatest if found) and bump it
+  - The `major` type bumps the major version (for example `2.4.1 => 3.0.0`); `minor` and `patch` work the same way.
+  - The `premajor` type bumps the version up to the next major version and down to a prerelease of that major version; `preminor` and `prepatch` work the same way.
+  - The `prerelease` type works the same as `prepatch` if the current version is a non-prerelease. If the current is already a prerelease then it's simply incremented (for example `4.0.0-rc.2` to `4.0.0-rc.3`).
+- A [semver-valid](https://semver.org/) version like 2.4.0.
+
+If the (resulting) version is greater than the current version then commits will be taken from the semver-latest tag until HEAD. I.e. documenting a new release before it's git-tagged. If the version matches an existing tag then a release will be inserted at the appriopriate place, populated with commits between that version's tag and the one before it. I.e. documenting a past release after it's git-tagged.
+
+Additional options for this command:
+
+- `--no-commits`: create an empty release.
+
+Works best on a linear git history. If `hallmark` encounters other tags in the commit range (which may happen if releases were made in parallel on other branches) it will stop there and not include further (older) commits.
+
+The `cc add` command also fixes markdown - both existing content and generated content. After you tweak the release following [Common Changelog](https://common-changelog.org) you may want to run `hallmark fix` again.
 
 ## Package Options
 

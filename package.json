@@ -26,7 +26,7 @@
     "remark": "^12.0.1",
     "remark-autolink-references": "^1.0.0",
     "remark-collapse": "~0.1.2",
-    "remark-common-changelog": "^0.0.2",
+    "remark-common-changelog": "^0.0.3",
     "remark-github": "^9.0.1",
     "remark-lint": "^7.0.1",
     "remark-lint-blockquote-indentation": "^2.0.1",

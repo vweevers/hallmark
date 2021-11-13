@@ -9,8 +9,8 @@ Commands:
 
   lint                      Lint markdown files (default)
   fix                       Fix markdown files
-  bump <target>             Add new entry to changelog. Target must be a
-                            release type (major, minor, patch, premajor,
+  cc add <target>           Add new release to CHANGELOG.md. Target must be
+                            a release type (major, minor, patch, premajor,
                             preminor, prepatch, prerelease) or a version.
 
 Options:
@@ -21,6 +21,7 @@ Options:
       --report <reporter>   Specify reporter
       --[no-]color          Force color in report (detected by default)
       --fix                 Backwards-compatible alias for fix command
+      --no-commits          Don't populate release with commits
 
 Examples:
 
@@ -34,4 +35,4 @@ Examples:
   $ hallmark fix CHANGELOG.md docs/*.md
 
   # Add new minor version to changelog
-  $ hallmark bump minor
+  $ hallmark cc add minor

@@ -7,12 +7,13 @@ if (process.version.match(/^v(\d+)\./)[1] < 10) {
 }
 
 const argv = require('subarg')(process.argv.slice(2), {
-  boolean: ['fix', 'help', 'version'],
+  boolean: ['fix', 'help', 'version', 'commits'],
   string: ['report'],
   default: {
     fix: false,
     help: false,
-    version: false
+    version: false,
+    commits: true
   },
   alias: {
     h: 'help',
@@ -22,33 +23,36 @@ const argv = require('subarg')(process.argv.slice(2), {
 })
 
 if (argv.help) {
-  usage()
+  usage(0)
 } else if (argv.version) {
   console.log(require('./package.json').version)
 } else {
-  const rest = argv._
+  const { commits, _: rest, ...options } = argv
 
   if (rest[0] === 'lint') {
-    argv.files = files(rest.slice(1))
-    require('./index.js').lint(argv, done)
+    options.files = files(rest.slice(1))
+    require('./index.js').lint(options, done)
   } else if (rest[0] === 'fix') {
-    argv.files = files(rest.slice(1))
-    require('./index.js').fix(argv, done)
+    options.files = files(rest.slice(1))
+    require('./index.js').fix(options, done)
   } else if (rest[0] === 'bump') {
-    const target = rest[1]
-
-    if (!target) {
-      usage()
-      process.exit(1)
+    console.error("Error: the 'bump' command has been renamed to 'cc add'.\n")
+    usage(1)
+  } else if (rest[0] === 'cc') {
+    if (rest[1] === 'add') {
+      const target = rest[2]
+      if (!target) usage(1)
+      options.files = files(rest.slice(3))
+      require('./index.js').cc.add(target, { ...options, commits }, done)
+    } else {
+      console.error('Error: unknown command.')
+      usage(1)
     }
-
-    argv.files = files(rest.slice(2))
-    require('./index.js').bump(target, argv, done)
   } else {
     // Old usage (no commands)
     // TODO: deprecate?
-    argv.files = files(rest)
-    require('./index.js')[argv.fix ? 'fix' : 'lint'](argv, done)
+    options.files = files(rest)
+    require('./index.js')[options.fix ? 'fix' : 'lint'](options, done)
   }
 }
 
@@ -61,10 +65,16 @@ function done (err, result) {
   process.exit(result.code)
 }
 
-function usage () {
+function usage (exitCode) {
   const fs = require('fs')
   const path = require('path')
-  const usage = path.join(__dirname, 'USAGE')
+  const usage = fs.readFileSync(path.join(__dirname, 'USAGE'), 'utf8').trim()
 
-  fs.createReadStream(usage).pipe(process.stdout)
+  if (exitCode) {
+    console.error(usage)
+    process.exit(exitCode)
+  } else {
+    console.log(usage)
+    process.exit()
+  }
 }

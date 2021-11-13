@@ -137,7 +137,8 @@ exports.fix = function (options, callback) {
   return hallmark({ ...options, fix: true }, callback)
 }
 
-exports.bump = function (target, options, callback) {
+exports.cc = {}
+exports.cc.add = function (target, options, callback) {
   if (!target) {
     throw new TypeError('First argument "target" is required')
   } else if (typeof target !== 'string') {
@@ -152,6 +153,7 @@ exports.bump = function (target, options, callback) {
   }
 
   const changelog = {
+    commits: options.commits !== false,
     ...options.changelog,
     add: target
   }
