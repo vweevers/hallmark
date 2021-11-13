@@ -10,8 +10,10 @@ const processor = require('remark')
 const path = require('path')
 const fs = require('fs')
 
+const kPromise = Symbol('promise')
+
 function hallmark (options, callback) {
-  callback = fromCallback(callback)
+  callback = fromCallback(callback, kPromise)
 
   const fix = !!options.fix
   const cwd = path.resolve(options.cwd || '.')
@@ -116,7 +118,7 @@ function hallmark (options, callback) {
     })
   })
 
-  return callback.promise
+  return callback[kPromise]
 }
 
 exports.lint = function (options, callback) {

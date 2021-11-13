@@ -19,7 +19,7 @@
     "USAGE"
   ],
   "dependencies": {
-    "catering": "^2.0.0",
+    "catering": "^2.1.0",
     "deglob": "^4.0.0",
     "find-file-up": "^2.0.1",
     "find-githost": "^1.0.0",
