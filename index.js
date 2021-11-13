@@ -2,7 +2,7 @@ import deglob from 'deglob'
 import find from 'find-file-up'
 import Githost from 'find-githost'
 import engine from 'unified-engine'
-import { stdout as color } from 'supports-color'
+import supportsColor from 'supports-color'
 import { fromCallback } from 'catering'
 import defaultReporter from 'vfile-reporter-shiny'
 import processor from 'remark'
@@ -72,7 +72,7 @@ function hallmark (options, callback) {
     engine({
       processor,
       extensions: ['md', 'markdown'],
-      color,
+      color: supportsColor.stdout,
       files,
       cwd,
       reporter,

@@ -53,7 +53,7 @@
     "remark-toc": "^7.0.0",
     "remark-validate-links": "^10.0.2",
     "subarg": "^1.0.0",
-    "supports-color": "^7.1.0",
+    "supports-color": "^9.0.2",
     "unified-engine": "^8.0.0",
     "vfile-reporter-shiny": "^0.1.2"
   },
