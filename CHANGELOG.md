@@ -1,5 +1,33 @@
 # Changelog
 
+## [4.0.0] - 2021-11-14
+
+_Hallmark now follows [Common Changelog](https://common-changelog.org/) instead of [Keep A Changelog](https://keepachangelog.com/)._
+
+### Changed
+
+- **Breaking:** replace `bump` command with `cc add` command ([`a633efa`](https://github.com/vweevers/hallmark/commit/a633efa))
+- **Breaking:** replace [`remark-changelog`](https://github.com/vweevers/remark-changelog) with [`remark-common-changelog`](https://github.com/vweevers/remark-common-changelog) ([`d0a7ce3`](https://github.com/vweevers/hallmark/commit/d0a7ce3))
+- **Breaking:** use [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and drop Node.js < 14 ([`2f64070`](https://github.com/vweevers/hallmark/commit/2f64070))
+- **Breaking:** bump [`remark`](https://github.com/remarkjs/remark/tree/main/packages/remark) and plugins ([`ecea8e2`](https://github.com/vweevers/hallmark/commit/ecea8e2))
+- Change default reporter to [`vfile-reporter-shiny`](https://github.com/vweevers/vfile-reporter-shiny) ([`1294b85`](https://github.com/vweevers/hallmark/commit/1294b85), [`175055a`](https://github.com/vweevers/hallmark/commit/175055a))
+- Bump `remark-toc` and `remark-validate-links` ([`9bc83d5`](https://github.com/vweevers/hallmark/commit/9bc83d5))
+- Bump `remark-lint-*` dependencies ([`47bf432`](https://github.com/vweevers/hallmark/commit/47bf432))
+- Bump `unified-engine` ([`c78714e`](https://github.com/vweevers/hallmark/commit/c78714e))
+- Bump `supports-color` ([`0d5bbd2`](https://github.com/vweevers/hallmark/commit/0d5bbd2))
+- Bump `catering` ([`feaf2b9`](https://github.com/vweevers/hallmark/commit/feaf2b9))
+- Refactor: use [`find-githost`](https://github.com/vweevers/find-githost) ([`15e2fc4`](https://github.com/vweevers/hallmark/commit/15e2fc4))
+
+### Added
+
+- **Breaking:** accept multiple targets on `cc add` ([`66edde1`](https://github.com/vweevers/hallmark/commit/66edde1))
+- Support disabling reporter in programmatic API ([`3876b0f`](https://github.com/vweevers/hallmark/commit/3876b0f))
+
+### Removed
+
+- **Breaking:** remove `remark-git-contributors` plugin ([`e8ec0c8`](https://github.com/vweevers/hallmark/commit/e8ec0c8))
+- **Breaking:** remove support of alternative file extensions ([`2716078`](https://github.com/vweevers/hallmark/commit/2716078)).
+
 ## [3.1.0] - 2020-11-14
 
 ### Added
@@ -117,6 +145,8 @@
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[4.0.0]: https://github.com/vweevers/hallmark/releases/tag/v4.0.0
 
 [3.1.0]: https://github.com/vweevers/hallmark/releases/tag/v3.1.0
 
