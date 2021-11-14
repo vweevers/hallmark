@@ -5,7 +5,8 @@ import { engine } from 'unified-engine'
 import supportsColor from 'supports-color'
 import { fromCallback } from 'catering'
 import defaultReporter from 'vfile-reporter-shiny'
-import processor from 'remark'
+import { remark as processor } from 'remark'
+import remarkGfm from 'remark-gfm'
 import remarkCommonChangelog from 'remark-common-changelog'
 import remarkGithub from 'remark-github'
 import remarkAutolinkReferences from 'remark-autolink-references'
@@ -78,6 +79,15 @@ function hallmark (options, callback) {
       reporter,
       reporterOptions,
       plugins: [
+        [remarkGfm, {
+          tableCellPadding: true,
+
+          // Allow disabling padding because on big tables it creates noise.
+          tablePipeAlign: paddedTable,
+
+          // In addition, use fixed width columns. TODO: use string-width package
+          stringLength: paddedTable ? (s) => String(s).length : () => 3
+        }],
         [remarkCommonChangelog, { cwd, fix, pkg, repository, ...changelog }],
         [remarkGithub, { repository }],
 
@@ -100,13 +110,21 @@ function hallmark (options, callback) {
       settings: {
         // One style for code blocks, whether they have a language or not.
         fences: true,
-        listItemIndent: '1',
 
-        // Allow disabling padding because on big tables it creates noise.
-        tablePipeAlign: paddedTable,
+        // Whether to indent the content of list items with the size of the bullet plus one space
+        listItemIndent: 'one',
 
-        // In addition, use fixed width columns.
-        stringLength: paddedTable ? (s) => String(s).length : () => 3
+        // Marker to use for bullets of items in unordered lists
+        bullet: '-',
+
+        // Marker to use for thematic breaks
+        rule: '-',
+
+        // Marker to use to serialize emphasis
+        emphasis: '_',
+
+        // Marker to use to serialize strong
+        strong: '*'
       },
       pluginPrefix: 'remark',
       // "Whether to write successfully processed files"

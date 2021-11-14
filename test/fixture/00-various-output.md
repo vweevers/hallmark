@@ -2,7 +2,7 @@
 
 - a [**@user**](https://github.com/user)
 - b [#12](https://github.com/test/test/issues/12)
-- [c]
+- \[c]
 - <http://example.com>
 
 ## table
@@ -30,3 +30,5 @@ yes()
 - [x] no
 - [x] yes
 - [ ] foo
+
+---

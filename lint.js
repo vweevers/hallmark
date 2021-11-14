@@ -19,6 +19,11 @@ import remarkLintTablePipes from 'remark-lint-table-pipes'
 import remarkLintCheckboxCharacterStyle from 'remark-lint-checkbox-character-style'
 import remarkLintDefinitionCase from 'remark-lint-definition-case'
 import remarkValidateLinks from 'remark-validate-links'
+import remarkLintEmphasisMarker from 'remark-lint-emphasis-marker'
+import remarkLintStrongMarker from 'remark-lint-strong-marker'
+import remarkLintUnorderedListMarkerStyle from 'remark-lint-unordered-list-marker-style'
+import remarkLintFencedCodeMarker from 'remark-lint-fenced-code-marker'
+import remarkLintRuleStyle from 'remark-lint-rule-style'
 
 export default function ({ fix, repository, paddedTable, validateLinks }) {
   const preset = {
@@ -41,9 +46,14 @@ export default function ({ fix, repository, paddedTable, validateLinks }) {
 
   if (!fix) {
     preset.plugins.push(
+      [remarkLintEmphasisMarker, '_'],
+      [remarkLintStrongMarker, '*'],
       remarkLintFinalNewline,
+      [remarkLintUnorderedListMarkerStyle, '-'],
       remarkLintListItemBulletIndent,
       [remarkLintListItemIndent, 'space'],
+      [remarkLintFencedCodeMarker, '`'],
+      [remarkLintRuleStyle, '---'],
       remarkLintNoAutoLinkWithoutProtocol,
       remarkLintNoBlockquoteWithoutMarker,
       remarkLintNoLiteralUrls,

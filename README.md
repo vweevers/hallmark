@@ -109,9 +109,15 @@ README.md:5:3
 
 ## Rules
 
-- [Insert links to GitHub issues, PRs and usernames](https://www.npmjs.com/package/remark-github) (not linted yet)
+- [Use `-` as marker for bullets of items in unordered lists](https://www.npmjs.com/package/remark-lint-unordered-list-marker-style) (`- item`)
+- [Use `_` as marker for emphasis](https://www.npmjs.com/package/remark-lint-emphasis-marker) (`_emphasis_`)
+- [Use `*` as marker for strong](https://www.npmjs.com/package/remark-lint-strong-marker) (`**strong**`)
+- [Use `x` as marker for checkboxes](https://www.npmjs.com/package/remark-lint-checkbox-character-style) (`- [x] item`)
+- [Use backtick as marker for fenced code block](https://www.npmjs.com/package/remark-lint-fenced-code-marker)
+- [Always use fences for code blocks](https://www.npmjs.com/package/remark-lint-code-block-style)
+- [Use `---` for thematic breaks](https://www.npmjs.com/package/remark-lint-rule-style)
+- [Insert links to GitHub issues, PRs and usernames](https://www.npmjs.com/package/remark-github) (not linted)
 - [Collapse a Table of Contents if it exists](https://www.npmjs.com/package/remark-collapse) (not linted)
-- [Fenced code blocks](https://www.npmjs.com/package/remark-lint-code-block-style)
 - [End file with newline](https://www.npmjs.com/package/remark-lint-final-newline)
 - No dead links, references and definitions:
   - [No dead internal links](https://www.npmjs.com/package/remark-validate-links)
@@ -131,9 +137,9 @@ README.md:5:3
   - [No literal URLs without angle-brackets](https://www.npmjs.com/package/remark-lint-no-literal-urls)
   - [No angle-bracketed links (`<url>`) without protocol](https://www.npmjs.com/package/remark-lint-no-auto-link-without-protocol)
 - [No blank lines without markers (`>`) in a blockquote](https://www.npmjs.com/package/remark-lint-no-blockquote-without-marker)
-- [Table cells must be padded](https://www.npmjs.com/package/remark-lint-table-cell-padding) ([#16](https://github.com/vweevers/hallmark/issues/16))
-- [Table rows must be fenced with pipes](https://www.npmjs.com/package/remark-lint-table-pipes)
-- [Checkboxes must use `x` as marker](https://www.npmjs.com/package/remark-lint-checkbox-character-style)
+- Tables:
+  - [Table cells must be padded](https://www.npmjs.com/package/remark-lint-table-cell-padding) ([#16](https://github.com/vweevers/hallmark/issues/16))
+  - [Table rows must be fenced with pipes](https://www.npmjs.com/package/remark-lint-table-pipes)
 
 ## Usage
 

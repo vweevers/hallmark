@@ -10,11 +10,16 @@ test('lints various', function (t) {
     t.ifError(err)
     t.is(actual, expected)
     t.same(file.messages.map(String), [
+      'test.md:3:1-3:10: Marker style should be `-`',
+      'test.md:4:1-4:8: Marker style should be `-`',
+      'test.md:5:1-5:6: Marker style should be `-`',
       'test.md:5:3-5:6: Found reference to undefined definition',
+      'test.md:6:1-6:21: Marker style should be `-`',
       'test.md:6:3-6:21: Don’t use literal URLs without angle brackets',
       'test.md:12:23: Cell should be padded',
       'test.md:16:1-16:9: Code blocks should be fenced',
-      'test.md:28:4-28:5: Checked checkboxes should use `x` as a marker'
+      'test.md:28:5: Checked checkboxes should use `x` as a marker',
+      'test.md:32:1-32:6: Rules should use `---`'
     ])
     t.end()
   })
