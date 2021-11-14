@@ -9,8 +9,7 @@
   "exports": "./index.js",
   "scripts": {
     "test": "standard && depcheck --ignores subarg && node cli.js && tape test/*.js",
-    "hallmark": "node cli.js --fix",
-    "check-licenses": "npm-consider install --test --production"
+    "hallmark": "node cli.js fix"
   },
   "files": [
     "CHANGELOG.md",
@@ -30,7 +29,7 @@
     "remark-collapse": "~0.1.2",
     "remark-common-changelog": "^2.0.0",
     "remark-gfm": "^3.0.1",
-    "remark-github": "^11.2.1",
+    "remark-github": "^11.2.2",
     "remark-lint": "^9.1.0",
     "remark-lint-blockquote-indentation": "^3.1.0",
     "remark-lint-checkbox-character-style": "^4.1.0",
@@ -61,12 +60,11 @@
     "subarg": "^1.0.0",
     "supports-color": "^9.0.2",
     "unified-engine": "^9.0.4",
-    "vfile-reporter-shiny": "^1.0.0"
+    "vfile-reporter-shiny": "^1.0.1"
   },
   "devDependencies": {
     "depcheck": "^1.4.2",
     "git-pull-or-clone": "^2.0.1",
-    "npm-consider": "^1.7.0",
     "standard": "^16.0.4",
     "tape": "github:substack/tape#d487add",
     "tempy": "^2.0.0"
@@ -93,13 +91,5 @@
   ],
   "engines": {
     "node": ">=14"
-  },
-  "config": {
-    "allowedLicenseTypes": [
-      "publicDomain",
-      "permissive",
-      "protective",
-      "uncategorized"
-    ]
   }
 }

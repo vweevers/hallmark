@@ -15,7 +15,7 @@
 
 ### Changed
 
-- **Breaking:** drop node &lt; 10 and upgrade dependencies ([`02e7c00`](https://github.com/vweevers/hallmark/commit/02e7c00)). Now silently exits on node &lt; 10. Two dozen remark modules have been upgraded, many with breaking changes though most don't apply here. One thing I've noticed is that text like `module@1.0.0` will be converted to a `mailto` link. Wrap such text in backticks.
+- **Breaking:** drop node < 10 and upgrade dependencies ([`02e7c00`](https://github.com/vweevers/hallmark/commit/02e7c00)). Now silently exits on node < 10. Two dozen remark modules have been upgraded, many with breaking changes though most don't apply here. One thing I've noticed is that text like `module@1.0.0` will be converted to a `mailto` link. Wrap such text in backticks.
 - **Breaking:** remove depth limit on table of contents ([`031a6ae`](https://github.com/vweevers/hallmark/commit/031a6ae))
 - Bump `remark-changelog` ([`4868875`](https://github.com/vweevers/hallmark/commit/4868875)). Adds experimental git submodule support.
 
@@ -37,7 +37,7 @@
 
 ### Changed
 
-- Skip running on node &lt; 8 ([`e804671`](https://github.com/vweevers/hallmark/commit/e804671))
+- Skip running on node < 8 ([`e804671`](https://github.com/vweevers/hallmark/commit/e804671))
 - Upgrade `standard` devDependency from `^13.0.1` to `^14.0.0` ([#35](https://github.com/vweevers/hallmark/issues/35))
 - Upgrade `rimraf` devDependency from `^2.6.3` to `^3.0.0` ([#34](https://github.com/vweevers/hallmark/issues/34))
 

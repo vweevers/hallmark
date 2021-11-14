@@ -1,12 +1,12 @@
 # hallmark
 
-> **Markdown Style Guide, with linter and automatic fixer.** :sparkles:  
+> **Markdown Style Guide, with linter and automatic fixer.** :sparkles:\
 > Powered by [`remark`][remark].
 
 [![npm status](http://img.shields.io/npm/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
 [![node](https://img.shields.io/node/v/hallmark.svg)](https://www.npmjs.org/package/hallmark)
 [![Test](https://img.shields.io/github/workflow/status/vweevers/hallmark/Test?label=test)](https://github.com/vweevers/hallmark/actions/workflows/test.yml)
-[![JavaScript Style Guide](https://img.shields.io/badge/standard-informational?logo=javascript&logoColor=fff)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/standard-informational?logo=javascript\&logoColor=fff)](https://standardjs.com)
 [![Markdown Style Guide](https://img.shields.io/badge/hallmark-informational?logo=markdown)](https://github.com/vweevers/hallmark)
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
@@ -21,9 +21,9 @@
 - [Rules](#rules)
 - [Usage](#usage)
   - [Commands](#commands)
-    - [`lint`](#lint)
-    - [`fix`](#fix)
-    - [`cc add <target>`](#cc-add-target)
+    - [`lint [file...]`](#lint-file)
+    - [`fix [file...]`](#fix-file)
+    - [`cc add <target...>`](#cc-add-target)
 - [Package Options](#package-options)
   - [`ignore`](#ignore)
   - [`autolinkReferences`](#autolinkreferences)
