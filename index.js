@@ -166,8 +166,12 @@ export const cc = {
   add: function (target, options, callback) {
     if (!target) {
       throw new TypeError('First argument "target" is required')
+    } else if (Array.isArray(target)) {
+      if (!target.every(t => typeof t === 'string' && t.trim() !== '')) {
+        throw new TypeError('First argument "target" must be a string or array of strings')
+      }
     } else if (typeof target !== 'string') {
-      throw new TypeError('First argument "target" must be a string')
+      throw new TypeError('First argument "target" must be a string or array of strings')
     }
 
     if (typeof options === 'function') {
@@ -177,13 +181,18 @@ export const cc = {
       options = {}
     }
 
+    if (!fs.existsSync(path.join(options.cwd || '.', 'CHANGELOG.md'))) {
+      fs.writeFileSync(path.join(options.cwd || '.', 'CHANGELOG.md'), '')
+    }
+
+    const files = ['CHANGELOG.md']
     const changelog = {
       commits: options.commits !== false,
       ...options.changelog,
       add: target
     }
 
-    return hallmark({ ...options, changelog, fix: true }, callback)
+    return hallmark({ ...options, files, changelog, fix: true }, callback)
   }
 }
 

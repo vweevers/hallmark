@@ -143,15 +143,13 @@ README.md:5:3
 
 ## Usage
 
-`hallmark [command] [options] [pattern ...]`
+`hallmark [command] [options]`
 
 Lint or fix files in the current working directory. The default command is `lint`.
 
-By default `hallmark` includes files matching `*.md`. Pass one or more glob patterns to override this. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
-
 Options:
 
-- `--ignore / -i <pattern>`: files to ignore. Repeat to specify multiple patterns (e.g. `-i a.md -i docs/*.md`). Can also be configured via [Package Options](#package-options).
+- `--ignore / -i <file>`: file or glob pattern to ignore. Repeat to specify multiple (e.g. `-i a.md -i docs/*.md`). Can also be configured via [Package Options](#package-options).
 - `--help`: print usage and exit
 - `--version`: print version and exit
 - `--report <reporter>`: see [Reporters](#reporters)
@@ -160,17 +158,17 @@ Options:
 
 ### Commands
 
-#### `lint`
+#### `lint [file...]`
 
-Lint markdown files.
+Lint markdown files. By default `hallmark` includes files matching `*.md`. To override this, provide one or more file arguments which can be file paths or glob patterns. Files matching `.gitignore` patterns are ignored. To ignore additional files, use the `--ignore / -i` option.
 
-#### `fix`
+#### `fix [file...]`
 
-Fix markdown files in place.
+Fix markdown files in place. The optional `file` argument is the same as on `lint`.
 
-#### `cc add <target>`
+#### `cc add <target...>`
 
-Add a release to `CHANGELOG.md` and populate it with commits. The `target` must be one of:
+Add release(s) to `CHANGELOG.md` and populate it with commits. If no `CHANGELOG.md` file exists then it will be created. The `target` argument must be one of:
 
 - A release type: `major`, `minor`, `patch`, `premajor`, `preminor`, `prepatch`, `prerelease`
   - These take the current version from the semver-latest tag, release or `package.json` (whichever is greatest if found) and bump it
@@ -185,9 +183,11 @@ Additional options for this command:
 
 - `--no-commits`: create an empty release.
 
+Multiple targets can be provided, in no particular order. For example `hallmark cc add 1.1.0 1.2.0` which acts as a shortcut for `hallmark cc add 1.1.0 && hallmark cc add 1.2.0`.
+
 Works best on a linear git history. If `hallmark` encounters other tags in the commit range (which may happen if releases were made in parallel on other branches) it will stop there and not include further (older) commits.
 
-The `cc add` command also fixes markdown - both existing content and generated content. After you tweak the release following [Common Changelog](https://common-changelog.org) you may want to run `hallmark fix` again.
+The `cc add` command also fixes markdown (both existing content and generated content) but only in `CHANGELOG.md`. After you tweak the release following [Common Changelog](https://common-changelog.org) you may want to run `hallmark fix`.
 
 ## Package Options
 

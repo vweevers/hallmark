@@ -1,30 +1,30 @@
-Usage: hallmark [command] [options] [pattern ...]
+Lint or fix files in the current working directory.
 
-  Lint or fix files in the current working directory. By default hallmark
-  includes files matching "*.md". Pass one or more glob patterns to override
-  this. Files matching .gitignore patterns are ignored. To ignore additional
-  files, use the --ignore option.
+Usage:
+  hallmark [command] [options]
 
 Commands:
+  lint    [file...]        Lint markdown files (default)
+  fix     [file...]        Fix markdown files
+  cc add  <target...>      Add release(s) to CHANGELOG.md.
 
-  lint                      Lint markdown files (default)
-  fix                       Fix markdown files
-  cc add <target>           Add new release to CHANGELOG.md. Target must be
-                            a release type (major, minor, patch, premajor,
-                            preminor, prepatch, prerelease) or a version.
+Arguments:
+  file                     By default hallmark includes files matching "*.md".
+                           To override this provide one or more file arguments
+                           which can be file paths or glob patterns.
+  target                   A release type (major, minor, patch, premajor,
+                           preminor, prepatch, prerelease) or a version.
 
 Options:
-
-  -i  --ignore <pattern>    Files to ignore. Repeat to specify multiple patterns
-  -h  --help                Print usage and exit
-  -v  --version             Print version and exit
-      --report <reporter>   Specify reporter
-      --[no-]color          Force color in report (detected by default)
-      --fix                 Backwards-compatible alias for fix command
-      --no-commits          Don't populate release with commits
+  -i  --ignore <file>      File or glob pattern to ignore (can be repeated)
+  -h  --help               Print usage and exit
+  -v  --version            Print version and exit
+      --report <reporter>  Specify reporter
+      --[no-]color         Force color in report (detected by default)
+      --fix                Backwards-compatible alias for fix command
+      --no-commits         Don't populate release with commits
 
 Examples:
-
   # Lint *.md files
   $ hallmark
 

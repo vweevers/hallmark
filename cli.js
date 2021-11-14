@@ -39,10 +39,9 @@ if (argv.help) {
     usage(1)
   } else if (rest[0] === 'cc') {
     if (rest[1] === 'add') {
-      const target = rest[2]
-      if (!target) usage(1)
-      options.files = files(rest.slice(3))
-      hallmark.cc.add(target, { ...options, commits }, done)
+      const targets = rest.slice(2)
+      if (!targets.length || !targets.every(Boolean)) usage(1)
+      hallmark.cc.add(targets, { ...options, commits }, done)
     } else {
       console.error('Error: unknown command.')
       usage(1)
