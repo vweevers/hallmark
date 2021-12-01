@@ -66,7 +66,7 @@
     "depcheck": "^1.4.2",
     "git-pull-or-clone": "^2.0.1",
     "standard": "^16.0.4",
-    "tape": "github:substack/tape#d487add",
+    "tape": "^5.3.2",
     "tempy": "^2.0.0"
   },
   "repository": {
