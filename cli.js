@@ -42,6 +42,9 @@ if (argv.help) {
       const targets = rest.slice(2)
       if (!targets.length || !targets.every(Boolean)) usage(1)
       hallmark.cc.add(targets, { ...options, commits }, done)
+    } else if (rest[1] === 'init') {
+      const { gte, lte, ...rest } = options
+      hallmark.cc.add({ gte, lte }, { ...rest, commits }, done)
     } else {
       console.error('Error: unknown command.')
       usage(1)

@@ -170,6 +170,8 @@ export const cc = {
       if (!target.every(t => typeof t === 'string' && t.trim() !== '')) {
         throw new TypeError('First argument "target" must be a string or array of strings')
       }
+    } else if (typeof target === 'object' && target !== null) {
+      // Range
     } else if (typeof target !== 'string') {
       throw new TypeError('First argument "target" must be a string or array of strings')
     }
@@ -181,11 +183,13 @@ export const cc = {
       options = {}
     }
 
-    if (!fs.existsSync(path.join(options.cwd || '.', 'CHANGELOG.md'))) {
-      fs.writeFileSync(path.join(options.cwd || '.', 'CHANGELOG.md'), '')
+    const files = ['CHANGELOG.md']
+    const fp = path.join(options.cwd || '.', files[0])
+
+    if (!fs.existsSync(fp)) {
+      fs.writeFileSync(fp, '# Changelog\n')
     }
 
-    const files = ['CHANGELOG.md']
     const changelog = {
       commits: options.commits !== false,
       ...options.changelog,
