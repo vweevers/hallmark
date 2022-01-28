@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.1.0] - 2022-01-28
+
+### Added
+
+- Add `cc init` command to create changelog from scratch ([#91](https://github.com/vweevers/hallmark/issues/91)) ([`47745a6`](https://github.com/vweevers/hallmark/commit/47745a6)).
+
 ## [4.0.0] - 2021-11-14
 
 _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead of [Keep A Changelog](https://keepachangelog.com/)._
@@ -145,6 +151,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[4.1.0]: https://github.com/vweevers/hallmark/releases/tag/v4.1.0
 
 [4.0.0]: https://github.com/vweevers/hallmark/releases/tag/v4.0.0
 
