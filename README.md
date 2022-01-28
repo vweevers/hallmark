@@ -177,7 +177,7 @@ Add release(s) to `CHANGELOG.md` and populate it with commits. If no `CHANGELOG.
   - The `prerelease` type works the same as `prepatch` if the current version is a non-prerelease. If the current is already a prerelease then it's simply incremented (for example `4.0.0-rc.2` to `4.0.0-rc.3`).
 - A [semver-valid](https://semver.org/) version like 2.4.0.
 
-If the (resulting) version is greater than the current version then commits will be taken from the semver-latest tag until HEAD. I.e. documenting a new release before it's git-tagged. If the version matches an existing tag then a release will be inserted at the appriopriate place, populated with commits between that version's tag and the one before it. I.e. documenting a past release after it's git-tagged.
+If the (resulting) version is greater than the current version then commits will be taken from the semver-latest tag until HEAD. I.e. documenting a new release before it's git-tagged. If the version matches an existing tag then a release will be inserted at the appriopriate place, populated with commits between that version's tag and the one before it. I.e. documenting a past release after it's git-tagged. If the version equals `0.0.1` or `1.0.0` and zero versions exist, then a [notice](https://common-changelog.org/#23notice) will be inserted (rather than commits) containing the text `:seedling: Initial release.`.
 
 Additional options for this command:
 
@@ -188,6 +188,16 @@ Multiple targets can be provided, in no particular order. For example `hallmark 
 Works best on a linear git history. If `hallmark` encounters other tags in the commit range (which may happen if releases were made in parallel on other branches) it will stop there and not include further (older) commits.
 
 The `cc add` command also fixes markdown (both existing content and generated content) but only in `CHANGELOG.md`. After you tweak the release following [Common Changelog](https://common-changelog.org) you may want to run `hallmark fix`.
+
+#### `cc init`
+
+Create a `CHANGELOG.md` from scratch. Inserts releases for every (semver-valid) git tag and then populates them with commits. If no git tags exist then the resulting `CHANGELOG.md` will merely have a `# Changelog` heading, without releases.
+
+Additional options for this command:
+
+- `--no-commits`: create empty releases
+- `--gte <version>`: only include versions greater than or equal to this version
+- `--lte <version>`: only include versions less than or equal to this version.
 
 ## Package Options
 

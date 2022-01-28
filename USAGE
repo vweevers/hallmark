@@ -7,6 +7,8 @@ Commands:
   lint    [file...]        Lint markdown files (default)
   fix     [file...]        Fix markdown files
   cc add  <target...>      Add release(s) to CHANGELOG.md.
+  cc init                  Create a CHANGELOG.md from scratch. Inserts releases
+                           for all versions unless --gte or --lte are provided.
 
 Arguments:
   file                     By default hallmark includes files matching "*.md".
@@ -23,6 +25,8 @@ Options:
       --[no-]color         Force color in report (detected by default)
       --fix                Backwards-compatible alias for fix command
       --no-commits         Don't populate release with commits
+      --gte <version>      Only include versions greater than or equal to this
+      --lte <version>      Only include versions less than or equal to this
 
 Examples:
   # Lint *.md files
