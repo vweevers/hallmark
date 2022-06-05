@@ -1,5 +1,5 @@
 import test from 'tape'
-import tempy from 'tempy'
+import { temporaryDirectory } from 'tempy'
 import fs from 'fs'
 import path from 'path'
 import { execFileSync } from 'child_process'
@@ -38,7 +38,7 @@ test('fixes various', function (t) {
 })
 
 function run (inputFixture, outputFixture, method, opts, test) {
-  const cwd = tempy.directory()
+  const cwd = temporaryDirectory()
   const inputFile = new URL('./fixture/' + inputFixture + '.md', import.meta.url)
   const outputFile = new URL('./fixture/' + outputFixture + '.md', import.meta.url)
   const pkgFile = path.join(cwd, 'package.json')
