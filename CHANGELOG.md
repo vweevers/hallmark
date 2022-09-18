@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.0] - 2022-09-18
+
+### Changed
+
+- Bump `remark-common-changelog` ([`46b9b2a`](https://github.com/vweevers/hallmark/commit/46b9b2a)) (Vincent Weevers)
+- Bump `remark-validate-links` from 11 to 12 ([#100](https://github.com/vweevers/hallmark/issues/100)) ([`fcb1b47`](https://github.com/vweevers/hallmark/commit/fcb1b47)) (Vincent Weevers)
+- Bump `unified-engine` from 9 to 10 ([#98](https://github.com/vweevers/hallmark/issues/98)) ([`c271740`](https://github.com/vweevers/hallmark/commit/c271740)) (Vincent Weevers).
+
 ## [4.1.0] - 2022-01-28
 
 ### Added
@@ -151,6 +159,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[4.2.0]: https://github.com/vweevers/hallmark/releases/tag/v4.2.0
 
 [4.1.0]: https://github.com/vweevers/hallmark/releases/tag/v4.1.0
 
