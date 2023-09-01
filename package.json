@@ -59,7 +59,7 @@
     "remark-validate-links": "^12.1.0",
     "subarg": "^1.0.0",
     "supports-color": "^9.0.2",
-    "unified-engine": "^10.0.1",
+    "unified-engine": "^11.1.0",
     "vfile-reporter-shiny": "^1.0.1"
   },
   "devDependencies": {
