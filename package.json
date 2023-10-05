@@ -24,7 +24,7 @@
     "deglob": "^4.0.0",
     "find-file-up": "^2.0.1",
     "find-githost": "^1.0.0",
-    "remark": "^14.0.1",
+    "remark": "^15.0.1",
     "remark-autolink-references": "^2.0.0",
     "remark-collapse": "~0.1.2",
     "remark-common-changelog": "^2.2.0",
