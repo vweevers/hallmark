@@ -27,7 +27,7 @@
     "remark": "^14.0.1",
     "remark-autolink-references": "^2.0.0",
     "remark-collapse": "~0.1.2",
-    "remark-common-changelog": "^2.2.0",
+    "remark-common-changelog": "^2.3.0",
     "remark-gfm": "^3.0.1",
     "remark-github": "^11.2.2",
     "remark-lint": "^9.1.0",
