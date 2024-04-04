@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.3.0] - 2024-04-04
+
+### Added
+
+- Take structured information from git trailers ([#115](https://github.com/vweevers/hallmark/issues/115)) ([`a92ba35`](https://github.com/vweevers/hallmark/commit/a92ba35)) (Vincent Weevers).
+
 ## [4.2.0] - 2022-09-18
 
 ### Changed
@@ -159,6 +165,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[4.3.0]: https://github.com/vweevers/hallmark/releases/tag/v4.3.0
 
 [4.2.0]: https://github.com/vweevers/hallmark/releases/tag/v4.2.0
 
