@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.0.0] - 2024-04-06
+
+### Removed
+
+- **Breaking:** drop support of Node.js < 16 ([`d15721f`](https://github.com/vweevers/hallmark/commit/d15721f)) (Vincent Weevers)
+- **Breaking:** remove `remark-toc` plugin ([#118](https://github.com/vweevers/hallmark/issues/118)) ([`19f4a8f`](https://github.com/vweevers/hallmark/commit/19f4a8f)) (Vincent Weevers)
+- Remove CJS compatibility hack for Node.js < 12.20 ([`08c2475`](https://github.com/vweevers/hallmark/commit/08c2475)) (Vincent Weevers).
+
+### Fixed
+
+- Bundle CLI into single file for faster startup ([`156d334`](https://github.com/vweevers/hallmark/commit/156d334)) (Vincent Weevers)
+- Speed up detection of tagged commits ([`50f0eca`](https://github.com/vweevers/hallmark/commit/50f0eca)) (Vincent Weevers).
+
 ## [4.3.0] - 2024-04-04
 
 ### Added
@@ -165,6 +178,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[5.0.0]: https://github.com/vweevers/hallmark/releases/tag/v5.0.0
 
 [4.3.0]: https://github.com/vweevers/hallmark/releases/tag/v4.3.0
 
