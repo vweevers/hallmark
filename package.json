@@ -4,7 +4,7 @@
   "description": "Markdown Style Guide, with linter and automatic fixer",
   "author": "Vincent Weevers",
   "license": "GPL-3.0",
-  "bin": "compat/cli.cjs",
+  "bin": "cli.js",
   "type": "module",
   "exports": "./index.js",
   "scripts": {
@@ -14,7 +14,6 @@
   "files": [
     "CHANGELOG.md",
     "cli.js",
-    "compat",
     "index.js",
     "lint.js",
     "USAGE"
