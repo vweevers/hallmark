@@ -10,8 +10,6 @@ import remarkGfm from 'remark-gfm'
 import remarkCommonChangelog from 'remark-common-changelog'
 import remarkGithub from 'remark-github'
 import remarkAutolinkReferences from 'remark-autolink-references'
-import remarkToc from 'remark-toc'
-import remarkCollapse from 'remark-collapse'
 import path from 'node:path'
 import fs from 'node:fs'
 import linter from './lint.js'
@@ -57,7 +55,6 @@ function hallmark (options, callback) {
 
     const paddedTable = rc.paddedTable !== false
     const validateLinks = rc.validateLinks !== false
-    const toc = rc.toc !== false
     const changelog = Object.assign({}, rc.changelog, options.changelog)
     const plugins = { plugins: concat('plugins', rc, options) }
     const fixers = { plugins: concat('fixers', rc, options) }
@@ -98,10 +95,6 @@ function hallmark (options, callback) {
               fix
             }]
           : null,
-
-        // TODO: https://github.com/vweevers/hallmark/issues/36
-        toc ? [remarkToc, { tight: true }] : null,
-        toc ? [remarkCollapse, collapseToc()] : null,
 
         fix ? fixers : null,
         linter({ fix, repository, paddedTable, validateLinks }),
@@ -229,11 +222,4 @@ function repo (cwd, options, rc, pkg) {
 
 function concat (key, rc, options) {
   return [].concat(rc[key] || []).concat(options[key] || [])
-}
-
-function collapseToc () {
-  return {
-    test: /^table of contents$/i,
-    summary: 'Click to expand'
-  }
 }
