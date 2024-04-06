@@ -10,37 +10,6 @@
 [![Markdown Style Guide](https://img.shields.io/badge/hallmark-informational?logo=markdown)](https://github.com/vweevers/hallmark)
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
-## Table of Contents
-
-<details><summary>Click to expand</summary>
-
-- [Why](#why)
-- [Quick Start](#quick-start)
-- [What You Might Do](#what-you-might-do)
-- [Requirements](#requirements)
-- [Rules](#rules)
-- [Usage](#usage)
-  - [Commands](#commands)
-    - [`lint [file...]`](#lint-file)
-    - [`fix [file...]`](#fix-file)
-    - [`cc add <target...>`](#cc-add-target)
-- [Package Options](#package-options)
-  - [`ignore`](#ignore)
-  - [`autolinkReferences`](#autolinkreferences)
-  - [`changelog`](#changelog)
-  - [`validateLinks`](#validatelinks)
-  - [`paddedTable`](#paddedtable)
-  - [`toc`](#toc)
-  - [`plugins`](#plugins)
-  - [`fixers`](#fixers)
-- [Opt-in Features](#opt-in-features)
-  - [Table of Contents](#table-of-contents-1)
-- [Reporters](#reporters)
-- [Install](#install)
-- [License](#license)
-
-</details>
-
 ## Why
 
 This module saves you time in three ways:
@@ -298,10 +267,6 @@ Boolean. Set to `false` to skip validating links. Useful when a markdown file us
 
 Boolean. Set to `false` to keep markdown tables compact. A temporary option until we decide on and are able to lint a style ([`3210a96`](https://github.com/vweevers/hallmark/commit/3210a96)).
 
-### `toc`
-
-Boolean. Set to `false` to skip generating (or replacing) a Table of Contents. A temporary option until we write a more flexible plugin ([#36](https://github.com/vweevers/hallmark/issues/36)).
-
 ### `plugins`
 
 An array of extra plugins, to be applied in both lint and fix mode.
@@ -309,20 +274,6 @@ An array of extra plugins, to be applied in both lint and fix mode.
 ### `fixers`
 
 An array of extra plugins, to be applied in fix mode.
-
-## Opt-in Features
-
-### Table of Contents
-
-_Note: this feature is likely to change ([#36](https://github.com/vweevers/hallmark/issues/36))._
-
-Add this heading to a markdown file:
-
-```markdown
-## Table of Contents
-```
-
-Running `hallmark fix` will then create or update a table of contents.
 
 ## Reporters
 
