@@ -34,7 +34,7 @@ for (const repo of dependents) {
 
       // Pipe stdout to stderr because our stdout is for TAP
       const stdio = ['ignore', process.stderr, process.stderr, 'ipc']
-      const cli = path.resolve(__dirname, '..', 'cli.js')
+      const cli = path.resolve(__dirname, '..', 'cli-dist.js')
 
       cp.fork(cli, { cwd, stdio }).on('exit', function (code) {
         t.is(code, 0, 'hallmark linter exited with code 0')

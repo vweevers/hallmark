@@ -4,16 +4,17 @@
   "description": "Markdown Style Guide, with linter and automatic fixer",
   "author": "Vincent Weevers",
   "license": "GPL-3.0",
-  "bin": "cli.js",
+  "bin": "cli-dist.js",
   "type": "module",
   "exports": "./index.js",
   "scripts": {
-    "test": "standard && depcheck --ignores subarg && node cli.js && tape test/*.js",
-    "hallmark": "node cli.js fix"
+    "test": "standard && depcheck --ignores subarg && node cli-dist.js && tape test/*.js",
+    "hallmark": "node cli-dist.js fix",
+    "pack": "rollup -c"
   },
   "files": [
     "CHANGELOG.md",
-    "cli.js",
+    "cli-dist.js",
     "index.js",
     "lint.js",
     "USAGE"
@@ -62,11 +63,19 @@
     "vfile-reporter-shiny": "^1.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "depcheck": "^1.4.2",
     "git-pull-or-clone": "^2.0.2",
+    "rollup": "^4.14.0",
     "standard": "^17.0.0",
     "tape": "^5.5.3",
     "tempy": "^3.0.0"
+  },
+  "standard": {
+    "ignore": ["cli-dist.js"]
   },
   "repository": {
     "type": "git",
