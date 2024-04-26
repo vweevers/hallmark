@@ -124,6 +124,7 @@ Options:
 - `--report <reporter>`: see [Reporters](#reporters)
 - `--[no-]color`: force color in report (detected by default)
 - `--fix`: backwards-compatible alias for fix command
+- `--verbose`: enable verbose output
 
 ### Commands
 

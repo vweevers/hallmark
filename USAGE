@@ -27,6 +27,7 @@ Options:
       --no-commits         Don't populate release with commits
       --gte <version>      Only include versions greater than or equal to this
       --lte <version>      Only include versions less than or equal to this
+      --verbose            Enable verbose output
 
 Examples:
   # Lint *.md files

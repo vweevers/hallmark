@@ -11,7 +11,7 @@ if (process.version.match(/^v(\d+)\./)[1] < 16) {
 }
 
 const argv = subarg(process.argv.slice(2), {
-  boolean: ['fix', 'help', 'version', 'commits'],
+  boolean: ['fix', 'help', 'version', 'commits', 'verbose'],
   string: ['report'],
   default: {
     fix: false,
@@ -68,7 +68,14 @@ function files (rest) {
 }
 
 function done (err, result) {
-  if (err) throw err
+  if (err) {
+    // Due to bundling the CLI into 1 file the error can be noisy (#120) so
+    // print a more friendly (shorter) message by default.
+    if (argv.verbose) throw err
+    console.error('%s: %s', err.name, err.message || err)
+    process.exit(1)
+  }
+
   process.exit(result.code)
 }
 
