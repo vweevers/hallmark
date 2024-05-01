@@ -54,7 +54,7 @@
     "remark-lint-table-cell-padding": "^4.1.1",
     "remark-lint-table-pipes": "^4.1.0",
     "remark-lint-unordered-list-marker-style": "^3.1.0",
-    "remark-validate-links": "^12.1.0",
+    "remark-validate-links": "^13.0.1",
     "subarg": "^1.0.0",
     "supports-color": "^9.0.2",
     "unified-engine": "^10.0.1",
