@@ -1,6 +1,6 @@
 {
   "name": "hallmark",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Markdown Style Guide, with linter and automatic fixer",
   "author": "Vincent Weevers",
   "license": "GPL-3.0",

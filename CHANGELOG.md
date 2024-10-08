@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1] - 2024-10-08
+
+### Fixed
+
+- Bump remark-common-changelog to 2.3.2 ([`f9ef578`](https://github.com/vweevers/hallmark/commit/f9ef578)) (Vincent Weevers)
+- Print a more friendly error message ([#120](https://github.com/vweevers/hallmark/issues/120)) ([`2142aec`](https://github.com/vweevers/hallmark/commit/2142aec)) (Vincent Weevers)
+
 ## [5.0.0] - 2024-04-06
 
 ### Removed
@@ -178,6 +185,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[5.0.1]: https://github.com/vweevers/hallmark/releases/tag/v5.0.1
 
 [5.0.0]: https://github.com/vweevers/hallmark/releases/tag/v5.0.0
 
