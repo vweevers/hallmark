@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.0.2] - 2025-10-17
+
+### Fixed
+
+- Bump `find-githost` from 1 to 2 ([`13ffab5`](https://github.com/vweevers/hallmark/commit/13ffab5)) (Vincent Weevers)
+
 ## [5.0.1] - 2024-10-08
 
 ### Fixed
@@ -185,6 +191,8 @@ _Hallmark now follows [Common Changelog](https://common-changelog.org/) instead 
 ## [0.0.1] - 2018-06-23
 
 _:seedling: Initial release._
+
+[5.0.2]: https://github.com/vweevers/hallmark/releases/tag/v5.0.2
 
 [5.0.1]: https://github.com/vweevers/hallmark/releases/tag/v5.0.1
 
